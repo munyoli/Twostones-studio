@@ -1,0 +1,35 @@
+2026-02-04T12:23:40.906Z CONTROLLER: Entered recommend function
+2026-02-04T12:23:40.916Z CONTROLLER: Imports check
+2026-02-04T12:23:40.917Z CONTROLLER: req.body raw: {"bodyType":"Hourglass","undertone":"Warm","occasion":"Wedding","measurements":{}}
+2026-02-04T12:23:40.918Z CONTROLLER: Parsed Inputs - Body: Hourglass, Tone: Warm, Occasion: Wedding
+2026-02-04T12:23:40.919Z CONTROLLER: Calling service...
+2026-02-04T12:23:41.009Z CONTROLLER: Service returned data. Keys: silhouetteAdvice,avoidAdvice,colorPalette,colorAdvice,fabricAdvice,styleTheme,advice,recommendations
+2026-02-04T12:23:41.021Z CONTROLLER: Response sent.
+2026-02-04T12:24:39.060Z CONTROLLER: Entered recommend function
+2026-02-04T12:24:39.064Z CONTROLLER: Imports check
+2026-02-04T12:24:39.065Z CONTROLLER: req.body raw: {"bodyType":"Apple","undertone":"Neutral","occasion":"Evening","measurements":{}}
+2026-02-04T12:24:39.065Z CONTROLLER: Parsed Inputs - Body: Apple, Tone: Neutral, Occasion: Evening
+2026-02-04T12:24:39.066Z CONTROLLER: Calling service...
+2026-02-04T12:24:39.129Z CONTROLLER: Service returned data. Keys: silhouetteAdvice,avoidAdvice,colorPalette,colorAdvice,fabricAdvice,styleTheme,advice,recommendations
+2026-02-04T12:24:39.131Z CONTROLLER: Response sent.
+2026-02-06T09:22:29.091Z CONTROLLER: Entered recommend function
+2026-02-06T09:22:29.094Z CONTROLLER: Imports check
+2026-02-06T09:22:29.097Z CONTROLLER: req.body raw: {"bodyType":"Pear","undertone":"Cool","occasion":"Wedding","measurements":{}}
+2026-02-06T09:22:29.098Z CONTROLLER: Parsed Inputs - Body: Pear, Tone: Cool, Occasion: Wedding
+2026-02-06T09:22:29.099Z CONTROLLER: Calling service...
+2026-02-06T09:22:29.220Z CONTROLLER: Service returned data. Keys: silhouetteAdvice,avoidAdvice,colorPalette,colorAdvice,fabricAdvice,styleTheme,advice,recommendations
+2026-02-06T09:22:29.222Z CONTROLLER: Response sent.
+2026-02-10T09:34:22.073Z CONTROLLER: Entered recommend function
+2026-02-10T09:34:22.079Z CONTROLLER: Imports check
+2026-02-10T09:34:22.080Z CONTROLLER: req.body raw: {"bodyType":"Hourglass","undertone":"Warm","occasion":"Wedding","measurements":{}}
+2026-02-10T09:34:22.082Z CONTROLLER: Parsed Inputs - Body: Hourglass, Tone: Warm, Occasion: Wedding
+2026-02-10T09:34:22.084Z CONTROLLER: Calling service...
+2026-02-10T09:34:22.118Z CONTROLLER: Service returned data. Keys: silhouetteAdvice,avoidAdvice,colorPalette,colorAdvice,fabricAdvice,styleTheme,advice,recommendations
+2026-02-10T09:34:22.122Z CONTROLLER: Response sent.
+2026-02-10T09:35:32.407Z CONTROLLER: Entered recommend function
+2026-02-10T09:35:32.415Z CONTROLLER: Imports check
+2026-02-10T09:35:32.416Z CONTROLLER: req.body raw: {"bodyType":"Hourglass","undertone":"Warm","occasion":"Work","measurements":{}}
+2026-02-10T09:35:32.418Z CONTROLLER: Parsed Inputs - Body: Hourglass, Tone: Warm, Occasion: Work
+2026-02-10T09:35:32.418Z CONTROLLER: Calling service...
+2026-02-10T09:35:32.637Z CONTROLLER: Service returned data. Keys: silhouetteAdvice,avoidAdvice,colorPalette,colorAdvice,fabricAdvice,styleTheme,advice,recommendations
+2026-02-10T09:35:32.642Z CONTROLLER: Response sent.
