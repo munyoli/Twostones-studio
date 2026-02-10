@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import api from '../../../services/api';
-import ProductCard from '../../../components/ProductCard';
 import { Sparkles, ArrowRight, ArrowLeft, Check, Shirt, User, Palette, Calendar } from 'lucide-react';
 import { useAuth } from '../../auth/context/AuthContext';
 
@@ -12,7 +11,7 @@ const steps = [
 ];
 
 const AIStylist = () => {
-    const { user } = useAuth();
+    useAuth();
     const [currentStep, setCurrentStep] = useState(0);
     const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState({

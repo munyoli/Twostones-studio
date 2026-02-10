@@ -46,7 +46,7 @@ const Portfolio = () => {
                 </header>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
-                    {categories.map((category, idx) => (
+                    {categories.map((category) => (
                         <div key={category.id} className="group cursor-pointer">
                             <div className="aspect-[3/4] overflow-hidden mb-8 relative bg-stone-100">
                                 {/* Placeholder for actual images */}

@@ -26,7 +26,7 @@ const ProductCard = ({ product }: { product: Product }) => {
     // Determine the correct link path
     const isManukato = typeof product.id === 'string' && product.id.startsWith('m-');
     const linkPath = isManukato
-        ? `/collection/manukato/${product.id.substring(2)}`
+        ? `/collection/manukato/${String(product.id).substring(2)}`
         : `/product/${product.id}`;
 
     return (

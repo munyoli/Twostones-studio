@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
-import { Target, Users, BookOpen, Crown } from 'lucide-react';
-import ResponsiveImage from '../components/ResponsiveImage';
+import { Target, BookOpen, Crown } from 'lucide-react';
+
 
 const About = () => {
     return (
