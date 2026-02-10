@@ -20,17 +20,24 @@ const watcher = chokidar.watch(SOURCE_DIR, {
     ignoreInitial: false // Process existing files on start
 });
 
+const processingFiles = new Set();
+
 const processImage = async (filePath) => {
     const fileName = path.basename(filePath);
-    const destinationPath = path.join(UPLOAD_DIR, fileName);
-    const relativeWebPath = `/uploads/manukato/${fileName}`;
+
+    // Prevent race conditions with a local set
+    if (processingFiles.has(fileName)) return;
+    processingFiles.add(fileName);
 
     try {
-        // Check if already processed
+        // Check if already processed in DB
         const existing = await ManukatoItem.findOne({ where: { originalName: fileName } });
         if (existing) {
+            processingFiles.delete(fileName);
             return;
         }
+
+        // ... rest of processing ...
 
         // Process Image (WebP conversion + resizing)
         const { main } = await require('../utils/imageProcessor').processImage(filePath, UPLOAD_DIR);
@@ -56,24 +63,52 @@ const processImage = async (filePath) => {
         const description = descriptions[Math.floor(Math.random() * descriptions.length)];
         const stylingTips = stylingList[Math.floor(Math.random() * stylingList.length)];
 
+        // Load price configuration
+        let pricesConfig = { default_min: 250, default_max: 450, overrides: {} };
+        try {
+            const configPath = path.join(__dirname, '../data/manukato_prices.json');
+            if (fs.existsSync(configPath)) {
+                pricesConfig = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
+            }
+        } catch (e) {
+            console.error('[Manukato Watcher] Error reading prices config:', e);
+        }
+
+        const itemConfig = pricesConfig.overrides[fileName];
+        let finalPrice;
+        let showInShop = true;
+
+        if (typeof itemConfig === 'object') {
+            finalPrice = itemConfig.price;
+            showInShop = itemConfig.show_in_shop !== undefined ? itemConfig.show_in_shop : true;
+        } else if (typeof itemConfig === 'number') {
+            finalPrice = itemConfig;
+        }
+
+        finalPrice = finalPrice || (Math.floor(Math.random() * (pricesConfig.default_max - pricesConfig.default_min)) + pricesConfig.default_min);
+
         await ManukatoItem.create({
-            originalName: fileName, // Keep original name to prevent re-processing
+            originalName: fileName,
             imagePath: relativeWebPath,
             brandName: brandName,
             description: description,
             stylingTips: stylingTips,
-            price: Math.floor(Math.random() * 200) + 250 // Elevated price for luxury
+            price: finalPrice,
+            showInShop: showInShop
         });
 
         console.log(`[Manukato Watcher] Processed and added to collection: ${fileName}`);
     } catch (error) {
         console.error(`[Manukato Watcher] Error processing ${fileName}:`, error);
+    } finally {
+        processingFiles.delete(fileName);
     }
 };
 
 const generateName = (fileName) => {
     const base = path.parse(fileName).name.replace(/[-_]/g, ' ');
-    return base.charAt(0).toUpperCase() + base.slice(1) + " Garment";
+    // Remove "Garment" suffix - just capitalize the base name
+    return base.charAt(0).toUpperCase() + base.slice(1);
 };
 
 watcher

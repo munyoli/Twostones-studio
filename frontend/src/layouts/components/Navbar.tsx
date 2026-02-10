@@ -25,6 +25,7 @@ const Navbar = () => {
 
                 <div className="hidden md:flex items-center space-x-8 uppercase text-sm tracking-widest font-medium">
                     <Link to="/collection/manukato" className="hover:text-brand-secondary transition-colors">Collection</Link>
+                    <Link to="/about" className="hover:text-brand-secondary transition-colors">About</Link>
                     <Link to="/portfolio" className="hover:text-brand-secondary transition-colors">Portfolio</Link>
                     <Link to="/shop" className="hover:text-brand-secondary transition-colors">Shop</Link>
                     <Link to="/journal" className="hover:text-brand-secondary transition-colors flex items-center gap-2">

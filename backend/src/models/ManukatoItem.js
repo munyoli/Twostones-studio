@@ -35,6 +35,10 @@ const ManukatoItem = sequelize.define('ManukatoItem', {
     isActive: {
         type: DataTypes.BOOLEAN,
         defaultValue: true
+    },
+    showInShop: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true
     }
 }, {
     timestamps: true

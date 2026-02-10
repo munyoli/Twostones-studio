@@ -1,0 +1,40 @@
+{
+    "default_min": 3500,
+    "default_max": 50000,
+    "overrides": {
+        "Aria Jumpsuit.JPG": 4500,
+        "Dua bubu dress.jpg": 3500,
+        "Ezer dress.jpg": 4500,
+        "Favour kimono.jpg": 4500,
+        "Furaha dress.jpg": 3800,
+        "Lilly Beige.JPG": 5500,
+        "Lilly dress Black.JPG": 5500,
+        "Lilly dress.JPG": 5500,
+        "Regal favour kimono.jpg": 4500,
+        "Scarlet pants.jpg": 2800,
+        "Sheba dress pink.jpg": 5500,
+        "Twostones Girlies.jpg": {
+            "price": 3500,
+            "show_in_shop": false
+        },
+        "Waridi set.JPG": 3500,
+        "Sheba Furaha.jpg": {
+            "price": 3500,
+            "show_in_shop": false
+        },
+        "Favour Dress.jpg": {
+            "price": 4500,
+            "show_in_shop": false
+        },
+        "Zoe dress.jpg": 3500,
+        "sheba dress blue.jpg": 5500,
+        "sheba dress.JPG": {
+            "price": 3500,
+            "show_in_shop": false
+        },
+        "sheba scarlet.jpg": {
+            "price": 3500,
+            "show_in_shop": false
+        }
+    }
+}

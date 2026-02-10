@@ -43,16 +43,18 @@ const ProductList = () => {
             </header>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
-                {[...(products || []), ...(manukatoItems || []).map((m: any) => ({
-                    id: `m-${m.id}`,
-                    name: m.brandName,
-                    price: m.price,
-                    images: [{ image_url: m.imagePath, is_primary: true }],
-                    category: { name: 'Manukato RTW' },
-                    isManukato: true
-                }))].map((product: any) => (
-                    <ProductCard key={product.id} product={product} />
-                ))}
+                {[...(products || []), ...(manukatoItems || [])
+                    .filter((m: any) => m.showInShop !== false) // Filter out group shots
+                    .map((m: any) => ({
+                        id: `m-${m.id}`,
+                        name: m.brandName,
+                        price: m.price,
+                        images: [{ image_url: m.imagePath, is_primary: true }],
+                        category: { name: 'Manukato RTW' },
+                        isManukato: true
+                    }))].map((product: any) => (
+                        <ProductCard key={product.id} product={product} />
+                    ))}
             </div>
         </div>
     );

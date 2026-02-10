@@ -22,6 +22,7 @@ const AdminJournals = React.lazy(() => import('./pages/AdminJournals'));
 const Profile = React.lazy(() => import('./pages/Profile'));
 const ManukatoCollection = React.lazy(() => import('./pages/ManukatoCollection'));
 const ManukatoProduct = React.lazy(() => import('./pages/ManukatoProduct'));
+const About = React.lazy(() => import('./pages/About'));
 const Contact = React.lazy(() => import('./pages/Contact'));
 const FAQ = React.lazy(() => import('./pages/FAQ'));
 const ShippingReturns = React.lazy(() => import('./pages/ShippingReturns'));
@@ -45,6 +46,7 @@ function App() {
             <Route path="/order-confirmation/:orderId" element={<OrderConfirmation />} />
             <Route path="/collection/manukato" element={<ManukatoCollection />} />
             <Route path="/collection/manukato/:id" element={<ManukatoProduct />} />
+            <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/shipping" element={<ShippingReturns />} />
