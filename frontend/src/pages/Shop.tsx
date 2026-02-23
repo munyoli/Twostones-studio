@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { productApi } from '../services/api';
+import { productApi, BASE_URL } from '../services/api';
 import ProductCard from '../components/ProductCard';
 import axios from 'axios';
 
@@ -9,15 +9,15 @@ const ProductList = () => {
         queryFn: () => productApi.getAll().then(res => res.data),
     });
 
-    const { data: manukatoItems, isLoading: manukatoLoading, isError: manukatoError } = useQuery({
-        queryKey: ['manukato-collection-shop'],
+    const { data: regularProducts, isLoading: itemsLoading, isError: manukatoError } = useQuery({
+        queryKey: ['manukato-items-shop'],
         queryFn: async () => {
-            const response = await axios.get('http://localhost:5000/api/collection/manukato');
+            const response = await axios.get(`${BASE_URL} /api/collection / manukato`);
             return response.data;
         }
     });
 
-    const isLoading = productsLoading || manukatoLoading;
+    const isLoading = productsLoading || itemsLoading;
     const isError = productsError || manukatoError;
 
     if (isLoading) return (
@@ -43,10 +43,10 @@ const ProductList = () => {
             </header>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
-                {[...(products || []), ...(manukatoItems || [])
+                {[...(products || []), ...(regularProducts || [])
                     .filter((m: any) => m.showInShop !== false) // Filter out group shots
                     .map((m: any) => ({
-                        id: `m-${m.id}`,
+                        id: `m - ${m.id} `,
                         name: m.brandName,
                         price: m.price,
                         images: [{ image_url: m.imagePath, is_primary: true }],

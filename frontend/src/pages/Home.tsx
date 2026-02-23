@@ -1,6 +1,6 @@
-
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
+import { BASE_URL } from '../services/api';
 import LandingTemplate from '../templates/LandingTemplate';
 
 interface ManukatoItem {
@@ -10,11 +10,11 @@ interface ManukatoItem {
 }
 
 const Home = () => {
-    const { data: items } = useQuery({
-        queryKey: ['manukato-collection-hero'],
+    const { data: items, isLoading } = useQuery({
+        queryKey: ['manukato-items-home'],
         queryFn: async () => {
-            const response = await axios.get('http://localhost:5000/api/collection/manukato');
-            return response.data as ManukatoItem[];
+            const response = await axios.get(`${BASE_URL}/api/collection/manukato`);
+            return response.data;
         }
     });
 

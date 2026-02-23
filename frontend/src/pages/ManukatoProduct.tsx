@@ -4,6 +4,7 @@ import axios from 'axios';
 import { ChevronLeft, ShoppingBag, Sparkles } from 'lucide-react';
 import ResponsiveImage from '../components/ResponsiveImage';
 import { useCart } from '../features/cart/context/CartContext';
+import { BASE_URL } from '../services/api';
 
 interface ManukatoItem {
     id: number;
@@ -22,7 +23,7 @@ const ManukatoProduct = () => {
     const { data: item, isLoading } = useQuery({
         queryKey: ['manukato-item', id],
         queryFn: async () => {
-            const response = await axios.get(`http://localhost:5000/api/collection/manukato/${id}`);
+            const response = await axios.get(`${BASE_URL}/api/collection/manukato/${id}`);
             return response.data as ManukatoItem;
         }
     });
@@ -54,7 +55,7 @@ const ManukatoProduct = () => {
                     <div className="relative group">
                         <div className="aspect-[3/4] overflow-hidden bg-white shadow-2xl">
                             <ResponsiveImage
-                                src={`http://localhost:5000${item.imagePath}`}
+                                src={`${BASE_URL}${item.imagePath}`}
                                 alt={item.brandName}
                                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                                 sizes="(max-width: 768px) 100vw, 50vw"

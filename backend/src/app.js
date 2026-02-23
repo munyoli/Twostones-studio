@@ -14,7 +14,14 @@ const measurementRoutes = require('./routes/measurementRoutes');
 
 const app = express();
 
-app.use(cors());
+const corsOptions = {
+    origin: '*', // For now keep it permissive to avoid blocking the live site, but we can refine this later
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+    optionsSuccessStatus: 204
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Log static file requests for debugging

@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import api from '../../../services/api';
-import { Sparkles, ArrowRight, ArrowLeft, Check, Shirt, User, Palette, Calendar } from 'lucide-react';
+import { BASE_URL } from '../../../services/api';
+import { Sparkles, ArrowRight, ArrowLeft, Check, User, Palette, Calendar, Send, RefreshCw, ShoppingBag } from 'lucide-react';
+import ResponsiveImage from '../../../components/ResponsiveImage';
 import { useAuth } from '../../auth/context/AuthContext';
 
 const steps = [
@@ -213,7 +215,7 @@ const AIStylist = () => {
                                                         Available in Collection
                                                     </div>
                                                     <img
-                                                        src={`http://localhost:5000${item.imagePath}`}
+                                                        src={`${BASE_URL}${item.imagePath}`}
                                                         alt={item.brandName}
                                                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                                                     />

@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { BASE_URL } from '../services/api';
 import ResponsiveImage from '../components/ResponsiveImage';
 
 interface ManukatoItem {
@@ -13,10 +14,10 @@ interface ManukatoItem {
 
 const ManukatoCollection = () => {
     const { data: items, isLoading } = useQuery({
-        queryKey: ['manukato-collection'],
+        queryKey: ['manukato-items'],
         queryFn: async () => {
-            const response = await axios.get('http://localhost:5000/api/collection/manukato');
-            return response.data as ManukatoItem[];
+            const response = await axios.get(`${BASE_URL}/api/collection/manukato`);
+            return response.data;
         },
         refetchInterval: 5000 // Refetch every 5 seconds for live updates
     });
@@ -41,7 +42,7 @@ const ManukatoCollection = () => {
             </section>
 
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-                {items?.map((item, index) => (
+                {items?.map((item: any, index: number) => (
                     <Link
                         key={item.id}
                         to={`/collection/manukato/${item.id}`}
@@ -50,7 +51,7 @@ const ManukatoCollection = () => {
                     >
                         <div className="aspect-[3/4] overflow-hidden">
                             <ResponsiveImage
-                                src={`http://localhost:5000${item.imagePath}`}
+                                src={`${BASE_URL}${item.imagePath}`}
                                 alt={item.brandName}
                                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { BASE_URL } from '../services/api';
 import { ArrowRight, BookOpen, Sparkles } from 'lucide-react';
 import ResponsiveImage from '../components/ResponsiveImage'; // Path needs specific check, assuming ../components works if templates are in src/templates
 
@@ -23,7 +24,7 @@ const LandingTemplate: React.FC<LandingTemplateProps> = ({ heroImages }) => {
                     {heroImages.map((image, i) => (
                         <div key={i} className="relative h-full overflow-hidden">
                             <ResponsiveImage
-                                src={`http://localhost:5000${image.imagePath}`}
+                                src={`${BASE_URL}${image.imagePath}`}
                                 alt="Luxury Heritage"
                                 className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
                                 sizes="(max-width: 768px) 100vw, 33vw"
@@ -81,7 +82,7 @@ const LandingTemplate: React.FC<LandingTemplateProps> = ({ heroImages }) => {
                         <div className="aspect-[4/5] bg-stone-100 overflow-hidden shadow-2xl">
                             {heroImages[0] && (
                                 <ResponsiveImage
-                                    src={`http://localhost:5000${heroImages[0].imagePath}`}
+                                    src={`${BASE_URL}${heroImages[0].imagePath}`}
                                     alt="Featured"
                                     className="w-full h-full object-cover"
                                     sizes="(max-width: 768px) 100vw, 50vw"
@@ -91,7 +92,7 @@ const LandingTemplate: React.FC<LandingTemplateProps> = ({ heroImages }) => {
                         <div className="absolute -bottom-10 -right-10 w-64 h-80 border-8 border-brand-bg bg-stone-200 shadow-xl hidden lg:block overflow-hidden">
                             {heroImages[1] && (
                                 <ResponsiveImage
-                                    src={`http://localhost:5000${heroImages[1].imagePath}`}
+                                    src={`${BASE_URL}${heroImages[1].imagePath}`}
                                     alt="Detail"
                                     className="w-full h-full object-cover"
                                     sizes="300px"

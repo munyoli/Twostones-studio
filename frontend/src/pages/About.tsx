@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { BASE_URL } from '../services/api';
 import { Target, BookOpen, Crown } from 'lucide-react';
 
 
@@ -28,7 +29,7 @@ const About = () => {
                         <div className="aspect-[3/4] bg-stone-200 overflow-hidden">
                             {/* Placeholder for Founder Image - user can replace later */}
                             <img
-                                src="http://localhost:5000/uploads/manukato/scarlet%20pants-800.webp"
+                                src={`${BASE_URL} /uploads/manukato / scarlet % 20pants - 800.webp`}
                                 alt="Founder"
                                 className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
                             />
