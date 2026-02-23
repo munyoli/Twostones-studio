@@ -52,7 +52,7 @@ if (fs.existsSync(frontendBuildPath)) {
             <div style="font-family: serif; text-align: center; margin-top: 50px; color: #1a1a1a;">
                 <h1 style="color: #c5a059;">Twostones API</h1>
                 <p>The backend server for Twostones African Luxury is running.</p>
-                <p style="color: #666; font-size: 0.8em;">Access frontend at <a href="http://localhost:5173">http://localhost:5173</a> during development.</p>
+                <p style="color: #666; font-size: 0.8em;">The API is live and accessible.</p>
                 <hr style="width: 50px; border-color: #c5a059;">
                 <p style="font-size: 0.7em; text-transform: uppercase; letter-spacing: 2px;">Sanctified. Sophisticated. Secure.</p>
             </div>

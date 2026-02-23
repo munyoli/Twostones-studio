@@ -33,3 +33,10 @@
 2026-02-10T09:35:32.418Z CONTROLLER: Calling service...
 2026-02-10T09:35:32.637Z CONTROLLER: Service returned data. Keys: silhouetteAdvice,avoidAdvice,colorPalette,colorAdvice,fabricAdvice,styleTheme,advice,recommendations
 2026-02-10T09:35:32.642Z CONTROLLER: Response sent.
+2026-02-23T08:25:06.650Z CONTROLLER: Entered recommend function
+2026-02-23T08:25:06.664Z CONTROLLER: Imports check
+2026-02-23T08:25:06.665Z CONTROLLER: req.body raw: {"bodyType":"Hourglass","undertone":"Warm","occasion":"Worship","measurements":{}}
+2026-02-23T08:25:06.666Z CONTROLLER: Parsed Inputs - Body: Hourglass, Tone: Warm, Occasion: Worship
+2026-02-23T08:25:06.666Z CONTROLLER: Calling service...
+2026-02-23T08:25:06.758Z CONTROLLER: Service returned data. Keys: silhouetteAdvice,avoidAdvice,colorPalette,colorAdvice,fabricAdvice,styleTheme,advice,recommendations
+2026-02-23T08:25:06.761Z CONTROLLER: Response sent.

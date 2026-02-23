@@ -1,13 +1,13 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
+    baseURL: import.meta.env.VITE_API_URL || 'https://twostones-studio.onrender.com/api',
     headers: {
         'Content-Type': 'application/json',
     },
 });
 
-export const BASE_URL = import.meta.env.VITE_BASE_URL || 'http://localhost:5000';
+export const BASE_URL = import.meta.env.VITE_BASE_URL || 'https://twostones-studio.onrender.com';
 
 // Request Interceptor for Auth Token
 // Request Interceptor for Auth Token
