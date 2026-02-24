@@ -29,7 +29,7 @@ const User = sequelize.define('User', {
         defaultValue: 'customer'
     },
     measurements: {
-        type: DataTypes.JSON,
+        type: DataTypes.JSONB,
         allowNull: true,
         defaultValue: {
             bust: '',

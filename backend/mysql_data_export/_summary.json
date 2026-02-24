@@ -1,0 +1,46 @@
+[
+  {
+    "table": "Users",
+    "rows": 2
+  },
+  {
+    "table": "Categories",
+    "rows": 0
+  },
+  {
+    "table": "Products",
+    "rows": 0
+  },
+  {
+    "table": "ProductImages",
+    "rows": 0
+  },
+  {
+    "table": "Carts",
+    "rows": 5
+  },
+  {
+    "table": "CartItems",
+    "rows": 6
+  },
+  {
+    "table": "Orders",
+    "rows": 4
+  },
+  {
+    "table": "OrderItems",
+    "rows": 6
+  },
+  {
+    "table": "JournalEntries",
+    "rows": 30
+  },
+  {
+    "table": "JournalResponses",
+    "rows": 1
+  },
+  {
+    "table": "ManukatoItems",
+    "rows": 19
+  }
+]

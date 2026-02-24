@@ -1,0 +1,40 @@
+[
+  {
+    "id": 1,
+    "name": "Munyoli Mwende",
+    "email": "munyolimwende@gmail.com",
+    "password": "$2b$10$DbyEP7/KYOtycZz69o2Hgu2IIpbVhIg0Vqu.zt0QYIKS/zyCEykGO",
+    "role": "customer",
+    "measurements": {
+      "bust": "36",
+      "hips": "38",
+      "notes": "",
+      "waist": "28",
+      "height": "40",
+      "inseam": "39",
+      "armhole": "18",
+      "shoulder": "15"
+    },
+    "createdAt": "2026-02-04T08:03:08.000Z",
+    "updatedAt": "2026-02-04T08:04:46.000Z"
+  },
+  {
+    "id": 2,
+    "name": "Shop Twostones",
+    "email": "manukato.twostones@gmail.com",
+    "password": "$2b$10$Viz7DOVsDP/3kcBflKGpruWc8qODHWjAwJWJJe6idH7epZbYQWZoq",
+    "role": "admin",
+    "measurements": {
+      "bust": "",
+      "hips": "",
+      "notes": "",
+      "waist": "",
+      "height": "",
+      "inseam": "",
+      "armhole": "",
+      "shoulder": ""
+    },
+    "createdAt": "2026-02-10T07:25:49.000Z",
+    "updatedAt": "2026-02-10T07:34:22.000Z"
+  }
+]

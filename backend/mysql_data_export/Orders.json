@@ -1,0 +1,54 @@
+[
+  {
+    "id": 1,
+    "user_id": 1,
+    "total_amount": "4331.00",
+    "status": "pending",
+    "payment_status": "unpaid",
+    "shipping_address": "buru",
+    "createdAt": "2026-02-10T08:51:07.000Z",
+    "updatedAt": "2026-02-10T08:51:07.000Z",
+    "payment_method": "manual",
+    "customer_email": "munyolimwende@gmail.com",
+    "customer_phone": "254702696194"
+  },
+  {
+    "id": 2,
+    "user_id": 1,
+    "total_amount": "327.00",
+    "status": "pending",
+    "payment_status": "unpaid",
+    "shipping_address": "buru",
+    "createdAt": "2026-02-10T08:52:11.000Z",
+    "updatedAt": "2026-02-10T08:52:11.000Z",
+    "payment_method": "manual",
+    "customer_email": "munyolimwende@gmail.com",
+    "customer_phone": "254702696194"
+  },
+  {
+    "id": 3,
+    "user_id": 1,
+    "total_amount": "3900.00",
+    "status": "pending",
+    "payment_status": "unpaid",
+    "shipping_address": "buru",
+    "createdAt": "2026-02-10T09:24:18.000Z",
+    "updatedAt": "2026-02-10T09:24:18.000Z",
+    "payment_method": "manual",
+    "customer_email": "munyolimwende@gmail.com",
+    "customer_phone": "254702696194"
+  },
+  {
+    "id": 4,
+    "user_id": 1,
+    "total_amount": "2800.00",
+    "status": "pending",
+    "payment_status": "unpaid",
+    "shipping_address": "buruburu",
+    "createdAt": "2026-02-23T05:19:41.000Z",
+    "updatedAt": "2026-02-23T05:19:41.000Z",
+    "payment_method": "manual",
+    "customer_email": "munyolimwende@gmail.com",
+    "customer_phone": "254702696194"
+  }
+]

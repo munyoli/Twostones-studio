@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "cart_id": 1,
+    "product_id": "m-75",
+    "quantity": 1,
+    "createdAt": "2026-02-10T08:14:46.000Z",
+    "updatedAt": "2026-02-10T08:14:46.000Z"
+  },
+  {
+    "id": 2,
+    "cart_id": 1,
+    "product_id": "m-76",
+    "quantity": 11,
+    "createdAt": "2026-02-10T08:31:03.000Z",
+    "updatedAt": "2026-02-10T08:50:38.000Z"
+  },
+  {
+    "id": 3,
+    "cart_id": 2,
+    "product_id": "m-75",
+    "quantity": 1,
+    "createdAt": "2026-02-10T08:51:50.000Z",
+    "updatedAt": "2026-02-10T08:51:50.000Z"
+  },
+  {
+    "id": 4,
+    "cart_id": 4,
+    "product_id": "m-76",
+    "quantity": 1,
+    "createdAt": "2026-02-10T09:22:53.000Z",
+    "updatedAt": "2026-02-10T09:22:53.000Z"
+  },
+  {
+    "id": 5,
+    "cart_id": 4,
+    "product_id": "m-71",
+    "quantity": 8,
+    "createdAt": "2026-02-10T09:23:06.000Z",
+    "updatedAt": "2026-02-10T09:23:21.000Z"
+  },
+  {
+    "id": 6,
+    "cart_id": 5,
+    "product_id": "m-35",
+    "quantity": 1,
+    "createdAt": "2026-02-23T05:18:30.000Z",
+    "updatedAt": "2026-02-23T05:18:30.000Z"
+  }
+]
