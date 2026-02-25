@@ -15,6 +15,12 @@ interface ManukatoItem {
     price: string;
 }
 
+// Handle both absolute Supabase URLs and legacy relative paths
+const getImageUrl = (imagePath: string) => {
+    if (imagePath.startsWith('http')) return imagePath;
+    return `${BASE_URL}${imagePath}`;
+};
+
 const ManukatoProduct = () => {
     const { id } = useParams();
     const navigate = useNavigate();
@@ -55,7 +61,7 @@ const ManukatoProduct = () => {
                     <div className="relative group">
                         <div className="aspect-[3/4] overflow-hidden bg-white shadow-2xl">
                             <ResponsiveImage
-                                src={`${BASE_URL}${item.imagePath}`}
+                                src={getImageUrl(item.imagePath)}
                                 alt={item.brandName}
                                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                                 sizes="(max-width: 768px) 100vw, 50vw"

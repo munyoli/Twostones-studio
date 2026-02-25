@@ -1,43 +1,80 @@
 const fs = require('fs');
-const path = require('path'); // Import path module
+const path = require('path');
+const multer = require('multer');
 const stylistService = require('../services/stylistService');
-const { Product, ProductImage } = require('../models');
-const { Op } = require('sequelize');
+
+// Configure multer for memory storage (we don't need to save to disk)
+const upload = multer({
+    storage: multer.memoryStorage(),
+    limits: { fileSize: 10 * 1024 * 1024 }, // 10MB max
+    fileFilter: (req, file, cb) => {
+        const allowed = ['image/jpeg', 'image/png', 'image/webp', 'image/heic'];
+        if (allowed.includes(file.mimetype)) {
+            cb(null, true);
+        } else {
+            cb(new Error('Only JPEG, PNG, WebP, and HEIC images are allowed'), false);
+        }
+    }
+});
 
 const logToFile = (msg) => {
     try {
         const logPath = path.join(__dirname, '../../debug_log.txt');
         fs.appendFileSync(logPath, new Date().toISOString() + ' ' + msg + '\n');
     } catch (e) {
-        // console.error("Log error", e);
+        // silent
     }
 };
 
+/**
+ * POST /api/stylist/recommend
+ * Accepts either:
+ *  - JSON body: { bodyType, undertone, occasion } (manual mode)
+ *  - multipart/form-data with "photo" file + optional "occasion" field (AI mode)
+ */
 const recommend = async (req, res) => {
     logToFile("CONTROLLER: Entered recommend function");
     try {
-        logToFile("CONTROLLER: Imports check");
-        if (!stylistService) throw new Error("stylistService is undefined");
+        let bodyType, undertone, occasion, styleNotes;
 
-        logToFile("CONTROLLER: req.body raw: " + JSON.stringify(req.body));
+        // Check if there's an uploaded photo
+        if (req.file) {
+            logToFile("CONTROLLER: Photo uploaded, analyzing with AI...");
+            const analysis = await stylistService.analyzePhoto(req.file.buffer, req.file.mimetype);
+            bodyType = analysis.bodyType;
+            undertone = analysis.undertone;
+            styleNotes = analysis.styleNotes;
+            occasion = req.body.occasion || 'casual';
+            logToFile(`CONTROLLER: AI Analysis - Body: ${bodyType}, Tone: ${undertone}`);
+        } else {
+            // Manual mode (JSON body)
+            logToFile("CONTROLLER: Manual mode, using form data");
+            bodyType = req.body.bodyType;
+            undertone = req.body.undertone;
+            occasion = req.body.occasion;
+        }
 
-        // Destructure
-        const { bodyType, undertone, occasion, measurements } = req.body || {};
-        logToFile(`CONTROLLER: Parsed Inputs - Body: ${bodyType}, Tone: ${undertone}, Occasion: ${occasion}`);
+        logToFile(`CONTROLLER: Final inputs - Body: ${bodyType}, Tone: ${undertone}, Occasion: ${occasion}`);
 
-        logToFile("CONTROLLER: Calling service...");
         const stylingProfile = await stylistService.getRecommendation({
             bodyType,
             undertone,
             occasion,
-            measurements
+            measurements: req.body.measurements || {}
         });
 
-        logToFile("CONTROLLER: Service returned data. Keys: " + (stylingProfile ? Object.keys(stylingProfile).join(',') : "NULL"));
+        // Include AI analysis info if photo was used
+        if (styleNotes) {
+            stylingProfile.aiAnalysis = {
+                bodyType,
+                undertone,
+                styleNotes,
+                photoAnalyzed: true
+            };
+        }
 
         res.json(stylingProfile);
         logToFile("CONTROLLER: Response sent.");
-
     } catch (error) {
         logToFile("CONTROLLER ERROR: " + error.message);
         logToFile("STACK: " + error.stack);
@@ -46,4 +83,4 @@ const recommend = async (req, res) => {
     }
 };
 
-module.exports = { recommend };
+module.exports = { recommend, upload };
