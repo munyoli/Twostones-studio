@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { productApi, BASE_URL } from '../services/api';
+import { productApi, API_BASE_URL } from '../services/api';
 import ProductCard from '../components/ProductCard';
 import axios from 'axios';
 
@@ -12,7 +12,7 @@ const ProductList = () => {
     const { data: regularProducts, isLoading: itemsLoading, isError: manukatoError } = useQuery({
         queryKey: ['manukato-items-shop'],
         queryFn: async () => {
-            const response = await axios.get(`${BASE_URL} /api/collection / manukato`);
+            const response = await axios.get(`${API_BASE_URL}/api/collection/manukato`);
             return response.data;
         }
     });
@@ -46,7 +46,7 @@ const ProductList = () => {
                 {[...(products || []), ...(regularProducts || [])
                     .filter((m: any) => m.showInShop !== false) // Filter out group shots
                     .map((m: any) => ({
-                        id: `m - ${m.id} `,
+                        id: `m-${m.id}`,
                         name: m.brandName,
                         price: m.price,
                         images: [{ image_url: m.imagePath, is_primary: true }],

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import api from '../../../services/api';
-import { BASE_URL } from '../../../services/api';
-import { Sparkles, ArrowRight, ArrowLeft, Check, User, Palette, Calendar, Send, RefreshCw, ShoppingBag, Camera, Upload, X } from 'lucide-react';
+import { API_BASE_URL } from '../../../services/api';
+import { Sparkles, ArrowRight, ArrowLeft, Check, User, Palette, Calendar, Camera, X } from 'lucide-react';
 import { useAuth } from '../../auth/context/AuthContext';
 
 const steps = [
@@ -113,7 +113,7 @@ const AIStylist = () => {
 
     const getImageUrl = (imagePath: string) => {
         if (imagePath.startsWith('http')) return imagePath;
-        return `${BASE_URL}${imagePath}`;
+        return `${API_BASE_URL}${imagePath}`;
     };
 
     const renderStep = () => {
@@ -449,8 +449,8 @@ const AIStylist = () => {
                                     (currentStep === 2 && !formData.undertone)
                                 }
                                 className={`flex items-center gap-2 text-xs uppercase tracking-widest font-bold transition-colors ${(currentStep === 1 && !formData.bodyType) || (currentStep === 2 && !formData.undertone)
-                                        ? 'text-stone-300 cursor-not-allowed'
-                                        : 'text-brand-secondary hover:text-brand-primary'
+                                    ? 'text-stone-300 cursor-not-allowed'
+                                    : 'text-brand-secondary hover:text-brand-primary'
                                     }`}
                             >
                                 Next Step <ArrowRight size={16} />

@@ -4,7 +4,7 @@ import axios from 'axios';
 import { ChevronLeft, ShoppingBag, Sparkles } from 'lucide-react';
 import ResponsiveImage from '../components/ResponsiveImage';
 import { useCart } from '../features/cart/context/CartContext';
-import { BASE_URL } from '../services/api';
+import { API_BASE_URL } from '../services/api';
 
 interface ManukatoItem {
     id: number;
@@ -18,7 +18,7 @@ interface ManukatoItem {
 // Handle both absolute Supabase URLs and legacy relative paths
 const getImageUrl = (imagePath: string) => {
     if (imagePath.startsWith('http')) return imagePath;
-    return `${BASE_URL}${imagePath}`;
+    return `${API_BASE_URL}${imagePath}`;
 };
 
 const ManukatoProduct = () => {
@@ -29,7 +29,7 @@ const ManukatoProduct = () => {
     const { data: item, isLoading } = useQuery({
         queryKey: ['manukato-item', id],
         queryFn: async () => {
-            const response = await axios.get(`${BASE_URL}/api/collection/manukato/${id}`);
+            const response = await axios.get(`${API_BASE_URL}/api/collection/manukato/${id}`);
             return response.data as ManukatoItem;
         }
     });

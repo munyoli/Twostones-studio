@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { CheckCircle, Package } from 'lucide-react';
 import axios from 'axios';
-import { BASE_URL } from '../../../services/api';
+import { API_BASE_URL } from '../../../services/api';
 
 const OrderConfirmation = () => {
     const { orderId } = useParams();
@@ -12,7 +12,7 @@ const OrderConfirmation = () => {
     useEffect(() => {
         const fetchOrder = async () => {
             try {
-                const response = await axios.get(`${BASE_URL}/api/orders/${orderId}`, {
+                const response = await axios.get(`${API_BASE_URL}/api/orders/${orderId}`, {
                     headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
                 });
                 setOrder(response.data);

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { BASE_URL } from '../services/api';
+import React from 'react';
+import { API_BASE_URL } from '../services/api';
 
 interface ResponsiveImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
     src: string;
@@ -17,7 +17,7 @@ const ResponsiveImage: React.FC<ResponsiveImageProps> = ({
 }) => {
     // For srcset generation, we need to extract the path without the origin if it's our backend
     let imagePath = src;
-    const backendUrl = BASE_URL;
+    const backendUrl = API_BASE_URL;
 
     if (src.startsWith(backendUrl)) {
         imagePath = src.substring(backendUrl.length);
@@ -43,11 +43,11 @@ const ResponsiveImage: React.FC<ResponsiveImageProps> = ({
     }
 
     const srcSet = `
-        ${basePath} -400.webp 400w,
-    ${basePath} -800.webp 800w,
-        ${basePath} -1200.webp 1200w,
-            ${src} 2000w
-                `;
+        ${basePath}-400.webp 400w,
+        ${basePath}-800.webp 800w,
+        ${basePath}-1200.webp 1200w,
+        ${src} 2000w
+    `;
 
     return (
         <img

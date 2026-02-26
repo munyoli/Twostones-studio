@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useCart } from '../features/cart/context/CartContext';
 import ResponsiveImage from './ResponsiveImage';
-import { BASE_URL } from '../services/api';
+import { API_BASE_URL } from '../services/api';
 
 interface Product {
     id: number | string; // Allow both number and string for Manukato items
@@ -19,9 +19,10 @@ const ProductCard = ({ product }: { product: Product }) => {
 
     if (product.images && product.images.length > 0) {
         const primary = product.images.find(img => img.is_primary) || product.images[0];
-        primaryImage = primary.image_url.startsWith('http')
-            ? primary.image_url
-            : `${BASE_URL}${primary.image_url}`;
+        const imageUrl = primary.image_url;
+        primaryImage = imageUrl.startsWith('http')
+            ? imageUrl
+            : `${API_BASE_URL}${imageUrl}`;
     }
 
     // Determine the correct link path

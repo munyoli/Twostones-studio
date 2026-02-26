@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { journalApi, BASE_URL } from '../services/api';
+import { journalApi, API_BASE_URL } from '../services/api';
 import { ChevronRight, ChevronLeft, Send, Sparkles } from 'lucide-react';
 
 const steps = ['Encounter', 'Strengths', 'Mirror', 'LieTruth', 'Redemption', 'Reflection', 'Translation'];
@@ -127,7 +127,13 @@ const JournalExperience = () => {
                         {entry.garment ? (
                             <div className="flex flex-col items-center">
                                 <div className="w-64 h-80 bg-stone-100 mb-6 overflow-hidden luxury-card">
-                                    <img src={`${BASE_URL}${entry.garment.images?.[0]?.image_url}`} alt={entry.garment.name} className="w-full h-full object-cover" />
+                                    <img
+                                        src={entry.garment.images?.[0]?.image_url.startsWith('http')
+                                            ? entry.garment.images[0].image_url
+                                            : `${API_BASE_URL}${entry.garment.images?.[0]?.image_url}`}
+                                        alt={entry.garment.name}
+                                        className="w-full h-full object-cover"
+                                    />
                                 </div>
                                 <h3 className="text-2xl font-serif font-bold mb-2">{entry.garment.name}</h3>
                                 <p className="text-stone-500 text-sm max-w-sm mb-6">{entry.garment.description}</p>

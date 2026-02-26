@@ -7,26 +7,17 @@ const api = axios.create({
     },
 });
 
-export const BASE_URL = import.meta.env.VITE_BASE_URL || 'https://twostones-studio.onrender.com';
+export const API_BASE_URL: string = import.meta.env.VITE_BASE_URL || 'https://twostones-studio.onrender.com';
 
-// Request Interceptor for Auth Token
 // Request Interceptor for Auth Token
 api.interceptors.request.use((config) => {
     const token = localStorage.getItem('token');
     if (token) {
-        // Ensure headers object exists
         if (!config.headers) {
             config.headers = {} as any;
         }
-        // Set the header
-        // For newer axios versions, headers might be an AxiosHeaders object, but setting property usually still works due to proxy or plain object.
-        // To be safe, try standard property assignment.
         (config.headers as any).Authorization = `Bearer ${token}`;
     }
-    console.log(`[API Request] ${config.method?.toUpperCase()} ${config.url}`, {
-        token: token ? 'Present' : 'Missing',
-        headers: config.headers
-    });
     return config;
 });
 
@@ -37,8 +28,6 @@ api.interceptors.response.use(
         if (error.response?.status === 401) {
             localStorage.removeItem('token');
             localStorage.removeItem('user');
-            // Optional: Redirect to login or just let the UI handle the logged-out state
-            // window.location.href = '/login'; 
         }
         return Promise.reject(error);
     }
@@ -60,7 +49,6 @@ export const journalApi = {
     getEntry: (id: string) => api.get(`/journal/${id}`),
     saveReflection: (data: any) => api.post('/journal/reflect', data),
     getMyReflections: () => api.get('/journal/my-reflections'),
-    // Admin
     getAllReflections: () => api.get('/journal/admin/all'),
     exportPDF: (id: string) => `${api.defaults.baseURL}/journal/admin/export/${id}`,
 };

@@ -1,7 +1,7 @@
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../../auth/context/AuthContext';
-import { Trash2, Minus, Plus, ShoppingBag, ArrowRight } from 'lucide-react';
-import { BASE_URL } from '../../../services/api';
+import { Trash2 } from 'lucide-react';
+import { API_BASE_URL } from '../../../services/api';
 import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
@@ -44,7 +44,7 @@ const Cart = () => {
                     }
 
                     const imageUrl = item.product.images?.[0]?.image_url || 'https://via.placeholder.com/400x600';
-                    const fullImageUrl = imageUrl.startsWith('http') ? imageUrl : `${BASE_URL}${imageUrl}`;
+                    const fullImageUrl = imageUrl.startsWith('http') ? imageUrl : `${API_BASE_URL}${imageUrl}`;
 
                     return (
                         <div key={item.id} className="flex gap-6 items-center">

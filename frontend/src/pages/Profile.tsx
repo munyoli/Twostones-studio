@@ -3,7 +3,7 @@ import { useAuth } from '../features/auth/context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { LogOut, Package, User as UserIcon, Calendar } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
-import { journalApi, BASE_URL } from '../services/api';
+import { journalApi, API_BASE_URL } from '../services/api';
 
 // Measurements Manager Component (defined first to avoid hoisting issues)
 const MeasurementsManager = () => {
@@ -25,7 +25,7 @@ const MeasurementsManager = () => {
         const fetchMeasurements = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const response = await fetch(`${BASE_URL}/api/user/measurements`, {
+                const response = await fetch(`${API_BASE_URL}/api/user/measurements`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
                 const data = await response.json();
@@ -43,7 +43,7 @@ const MeasurementsManager = () => {
         setStatus('loading');
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch(`${BASE_URL}/api/user/measurements`, {
+            const response = await fetch(`${API_BASE_URL}/api/user/measurements`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
