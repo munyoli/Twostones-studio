@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 
 import logo from '../../assets/logo.png';
 
@@ -28,12 +28,12 @@ const Footer = () => {
                 <div>
                     <h3 className="text-white font-medium mb-6 uppercase tracking-wider">Explore</h3>
                     <ul className="space-y-4 text-sm">
-                        <li><a href="/collection/manukato" className="hover:text-white transition-colors">Manukato Collection</a></li>
-                        <li><a href="/shop" className="hover:text-white transition-colors">The Shop</a></li>
-                        <li><a href="/size-guide" className="hover:text-white transition-colors">Size Guide</a></li>
-                        <li><a href="/faq" className="hover:text-white transition-colors">FAQ & Support</a></li>
-                        <li><a href="/shipping" className="hover:text-white transition-colors">Shipping & Returns</a></li>
-                        <li><a href="/contact" className="hover:text-white transition-colors">Contact Us</a></li>
+                        <li><Link to="/collection/manukato" className="hover:text-white transition-colors">Manukato Collection</Link></li>
+                        <li><Link to="/shop" className="hover:text-white transition-colors">The Shop</Link></li>
+                        <li><Link to="/size-guide" className="hover:text-white transition-colors">Size Guide</Link></li>
+                        <li><Link to="/faq" className="hover:text-white transition-colors">FAQ & Support</Link></li>
+                        <li><Link to="/shipping" className="hover:text-white transition-colors">Shipping & Returns</Link></li>
+                        <li><Link to="/contact" className="hover:text-white transition-colors">Contact Us</Link></li>
                     </ul>
                 </div>
 
@@ -41,7 +41,7 @@ const Footer = () => {
                     <h3 className="text-white font-medium mb-6 uppercase tracking-wider">Connect</h3>
                     <ul className="space-y-4 text-sm">
                         <li><a href="#" className="hover:text-white transition-colors">Instagram</a></li>
-                        <li><a href="#" className="hover:text-white transition-colors">Contact Us</a></li>
+                        <li><Link to="/contact" className="hover:text-white transition-colors">Contact Us</Link></li>
                         <li><a href="#" className="hover:text-white transition-colors">Newsletter</a></li>
                     </ul>
                 </div>

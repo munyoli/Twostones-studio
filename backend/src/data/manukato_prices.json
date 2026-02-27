@@ -14,12 +14,12 @@
         "Scarlet pants.jpg": 2800,
         "Sheba dress pink.jpg": 5500,
         "Twostones Girlies.jpg": {
-            "price": 3500,
+            "price": 5500,
             "show_in_shop": false
         },
-        "Waridi set.JPG": 3500,
+        "Waridi set.JPG": 5500,
         "Sheba Furaha.jpg": {
-            "price": 3500,
+            "price": 5500,
             "show_in_shop": false
         },
         "Favour Dress.jpg": {
@@ -29,11 +29,11 @@
         "Zoe dress.jpg": 3500,
         "sheba dress blue.jpg": 5500,
         "sheba dress.JPG": {
-            "price": 3500,
+            "price": 5500,
             "show_in_shop": false
         },
         "sheba scarlet.jpg": {
-            "price": 3500,
+            "price": 5500,
             "show_in_shop": false
         }
     }

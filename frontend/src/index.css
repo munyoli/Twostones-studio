@@ -1,22 +1,41 @@
 @import "tailwindcss";
 
 @theme {
-    --color-brand-primary: #2d2926;
-    /* Deep Onyx */
+    --color-brand-primary: #1a1a1a;
+    /* Richer Onyx */
     --color-brand-secondary: #c5a059;
     /* Muted Gold */
     --color-brand-accent: #8b4513;
     /* Saddle Brown */
     --color-brand-bg: #fdfaf6;
     /* Bone / Off-white */
+    --color-brand-soft: #f4f1ea;
 
     --font-serif: "Playfair Display", serif;
     --font-sans: "Inter", system-ui, sans-serif;
 }
 
 @layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
     body {
         @apply bg-brand-bg text-brand-primary font-sans antialiased;
+        overflow-x: hidden;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+        @apply bg-brand-bg;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        @apply bg-brand-secondary/30 rounded-full hover:bg-brand-secondary/50 transition-colors;
     }
 
     h1,

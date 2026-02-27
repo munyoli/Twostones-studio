@@ -1,5 +1,6 @@
 import { Sparkles, MessageCircle, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { API_BASE_URL } from '../services/api';
 
 const Portfolio = () => {
     const categories = [
@@ -7,28 +8,28 @@ const Portfolio = () => {
             id: 'rtw',
             title: 'Ready-to-Wear',
             description: 'Casual and luxury collections designed for everyday confidence. Pieces that move with you, honoring the rhythm of your life.',
-            image: '/uploads/portfolio/rtw.jpg', // Placeholder
+            image: 'https://qsljrajbpktbfkrfzlxf.supabase.co/storage/v1/object/public/manukato/Aria%20Jumpsuit.webp',
             link: '/collection/manukato'
         },
         {
             id: 'mens',
             title: 'Men\'s Bespoke',
             description: 'Tailored pieces crafted for elegance, confidence, and individuality. A tribute to the strength and distinct character of the modern man.',
-            image: '/uploads/portfolio/mens.jpg', // Placeholder
+            image: `${API_BASE_URL}/uploads/portfolio/mens.png`,
             link: '/contact'
         },
         {
             id: 'bridal',
             title: 'Bridal',
             description: 'Intentionally designed garments celebrating love, identity, and beauty. Weaving your unique story into every stitch of your most sacred day.',
-            image: '/uploads/portfolio/bridal.jpg', // Placeholder
+            image: `${API_BASE_URL}/uploads/portfolio/bridal.png`,
             link: '/contact'
         },
         {
             id: 'custom',
             title: 'Custom Outfits',
             description: 'Fully personalized creations, honoring each client\'s story, body, and confidence. A collaborative journey to manifest your truest self in fabric.',
-            image: '/uploads/portfolio/custom.jpg', // Placeholder
+            image: 'https://qsljrajbpktbfkrfzlxf.supabase.co/storage/v1/object/public/manukato/Favour%20Dress.webp',
             link: '/contact'
         }
     ];
@@ -49,10 +50,17 @@ const Portfolio = () => {
                     {categories.map((category) => (
                         <div key={category.id} className="group cursor-pointer">
                             <div className="aspect-[3/4] overflow-hidden mb-8 relative bg-stone-100">
-                                {/* Placeholder for actual images */}
-                                <div className="absolute inset-0 bg-stone-200 flex items-center justify-center text-stone-400 font-serif text-xl italic group-hover:bg-stone-300 transition-colors duration-700">
-                                    {category.title} Image
-                                </div>
+                                {category.image ? (
+                                    <img
+                                        src={category.image}
+                                        alt={category.title}
+                                        className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                                    />
+                                ) : (
+                                    <div className="absolute inset-0 bg-stone-200 flex items-center justify-center text-stone-400 font-serif text-xl italic group-hover:bg-stone-300 transition-colors duration-700">
+                                        {category.title} Image
+                                    </div>
+                                )}
                                 <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-700"></div>
                             </div>
 

@@ -29,7 +29,7 @@ const About = () => {
                         <div className="aspect-[3/4] bg-stone-200 overflow-hidden">
                             {/* Placeholder for Founder Image - user can replace later */}
                             <img
-                                src={`${API_BASE_URL}/uploads/manukato/scarlet%20pants-800.webp`}
+                                src="https://qsljrajbpktbfkrfzlxf.supabase.co/storage/v1/object/public/manukato/Scarlet%20pants.webp"
                                 alt="Founder"
                                 className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
                             />
