@@ -1,6 +1,5 @@
 import { Sparkles, MessageCircle, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { API_BASE_URL } from '../services/api';
 
 const Portfolio = () => {
     const categories = [
@@ -15,14 +14,14 @@ const Portfolio = () => {
             id: 'mens',
             title: 'Men\'s Bespoke',
             description: 'Tailored pieces crafted for elegance, confidence, and individuality. A tribute to the strength and distinct character of the modern man.',
-            image: `${API_BASE_URL}/uploads/portfolio/mens.png`,
+            image: 'https://qsljrajbpktbfkrfzlxf.supabase.co/storage/v1/object/public/manukato/portfolio/mens.png',
             link: '/contact'
         },
         {
             id: 'bridal',
             title: 'Bridal',
             description: 'Intentionally designed garments celebrating love, identity, and beauty. Weaving your unique story into every stitch of your most sacred day.',
-            image: `${API_BASE_URL}/uploads/portfolio/bridal.png`,
+            image: 'https://qsljrajbpktbfkrfzlxf.supabase.co/storage/v1/object/public/manukato/portfolio/bridal.png',
             link: '/contact'
         },
         {

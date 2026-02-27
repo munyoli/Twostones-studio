@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { API_BASE_URL } from '../services/api';
 import { Target, BookOpen, Crown } from 'lucide-react';
 
 
