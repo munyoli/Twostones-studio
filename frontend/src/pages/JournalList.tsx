@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { journalApi } from '../services/api';
 import { Link } from 'react-router-dom';
-import { Lock, Star } from 'lucide-react';
+import { BookOpen, Sparkles } from 'lucide-react';
 
 const JournalList = () => {
     const { data: entries, isLoading } = useQuery({
@@ -9,62 +9,83 @@ const JournalList = () => {
         queryFn: () => journalApi.getEntries().then(res => res.data),
     });
 
-    if (isLoading) return <div className="min-h-screen pt-40 text-center uppercase tracking-widest text-stone-400">Seeking wisdom...</div>;
+    if (isLoading) return <div className="min-h-screen pt-40 text-center uppercase tracking-widest text-stone-400 animate-pulse">Consulting the Archives...</div>;
 
-    // Sort entries by day number
     const sortedEntries = entries?.sort((a: any, b: any) => a.day_number - b.day_number) || [];
 
     return (
-        <div className="min-h-screen pt-32 pb-20 px-6 max-w-4xl mx-auto">
-            <header className="mb-20 text-center max-w-2xl mx-auto">
-                <h1 className="text-4xl md:text-5xl font-serif font-bold text-brand-primary mb-4 tracking-tight">The 30-Day Journey</h1>
-                <p className="text-stone-500 italic">"I will put enmity between you and the woman..." — Reclaim your story through the women who walked before you.</p>
+        <div className="min-h-screen bg-brand-bg pt-32 pb-32 px-6">
+            <header className="max-w-5xl mx-auto mb-24 text-center">
+                <div className="flex items-center justify-center gap-3 mb-6">
+                    <div className="h-px w-12 bg-brand-secondary opacity-50"></div>
+                    <span className="text-[10px] uppercase tracking-[0.5em] text-brand-secondary font-bold">The 30-Day Intensive</span>
+                    <div className="h-px w-12 bg-brand-secondary opacity-50"></div>
+                </div>
+                <h1 className="text-5xl md:text-7xl font-serif font-bold text-brand-primary mb-8 tracking-tighter">Women of Valor</h1>
+                <p className="max-w-2xl mx-auto text-stone-500 font-serif italic text-lg leading-relaxed">
+                    "Strength and honor are her clothing; she shall rejoice in time to come."<br />
+                    A journey through identity, grace, and the timeless style of the women who shaped history.
+                </p>
             </header>
 
-            <div className="relative">
-                {/* Vertical Line */}
-                <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-px bg-stone-200" />
+            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
+                {sortedEntries.map((entry: any) => (
+                    <Link
+                        key={entry.id}
+                        to={`/journal/${entry.id}`}
+                        className="group relative flex flex-col"
+                    >
+                        {/* Image Container */}
+                        <div className="relative aspect-[3/4] overflow-hidden luxury-card mb-6">
+                            <img
+                                src={entry.image_url}
+                                alt={entry.title}
+                                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                            />
+                            {/* Overlay */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 transition-opacity group-hover:opacity-40"></div>
 
-                <div className="space-y-24">
-                    {sortedEntries.map((entry: any, index: number) => {
-                        const isEven = index % 2 === 0;
-                        const isLocked = false; // All 30 days are now accessible
-
-                        return (
-                            <div key={entry.id} className={`relative flex items-center ${isEven ? 'justify-start' : 'justify-end'}`}>
-
-                                {/* Timeline Node */}
-                                <div className="absolute left-1/2 transform -translate-x-1/2 z-10">
-                                    <div className={`w-12 h-12 rounded-full border-4 flex items-center justify-center bg-brand-bg transition-colors ${isLocked ? 'border-stone-200 text-stone-300' : 'border-brand-primary text-brand-primary'
-                                        }`}>
-                                        <span className="font-serif font-bold text-sm">{entry.day_number}</span>
-                                    </div>
-                                </div>
-
-                                {/* Content Card */}
-                                <Link
-                                    to={`/journal/${entry.id}`}
-                                    className={`w-5/12 group relative ${isLocked ? 'pointer-events-none opacity-50' : 'cursor-pointer'}`}
-                                >
-                                    <div className="bg-white p-8 rounded-2xl shadow-sm border border-stone-100 hover:shadow-md transition-all text-center">
-                                        <div className="mb-4 text-brand-secondary flex justify-center">
-                                            {isLocked ? <Lock size={24} /> : <Star size={24} />}
-                                        </div>
-                                        <h3 className="text-xl font-serif font-bold text-brand-primary mb-2 line-clamp-1">{entry.title}</h3>
-                                        <p className="text-stone-400 text-xs uppercase tracking-widest mb-4">Day {entry.day_number}</p>
-
-                                        {!isLocked && (
-                                            <span className="text-brand-primary text-xs font-bold border-b border-brand-primary pb-1 group-hover:text-brand-secondary group-hover:border-brand-secondary transition-colors">
-                                                Begin Day {entry.day_number}
-                                            </span>
-                                        )}
-                                    </div>
-                                </Link>
+                            {/* Day Badge */}
+                            <div className="absolute top-6 left-6 bg-white/90 backdrop-blur-sm px-4 py-1 flex items-center gap-2">
+                                <span className="text-[10px] font-bold tracking-widest uppercase text-brand-primary">Day</span>
+                                <span className="text-lg font-serif font-bold text-brand-secondary">{entry.day_number}</span>
                             </div>
-                        );
-                    })}
-                </div>
+
+                            {/* Hover Action */}
+                            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                <div className="bg-white text-brand-primary px-8 py-3 text-[10px] font-bold uppercase tracking-[0.3em] flex items-center gap-2 shadow-2xl transform translate-y-4 group-hover:translate-y-0 transition-transform">
+                                    <BookOpen size={14} /> Open Scroll
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Text Content */}
+                        <div className="text-center md:text-left px-2">
+                            <div className="flex items-center gap-2 mb-2 justify-center md:justify-start">
+                                <span className="text-[10px] uppercase tracking-widest text-brand-secondary font-bold">
+                                    {entry.biblical_ref || 'Scripture'}
+                                </span>
+                                <Sparkles size={10} className="text-brand-secondary/40" />
+                            </div>
+                            <h3 className="text-2xl font-serif font-bold text-brand-primary mb-2 group-hover:text-brand-secondary transition-colors">
+                                {entry.title}
+                            </h3>
+                            <p className="text-stone-400 text-[10px] uppercase tracking-widest font-medium">
+                                {entry.subtitle || 'A Character Study'}
+                            </p>
+                        </div>
+                    </Link>
+                ))}
             </div>
+
+            <footer className="max-w-3xl mx-auto mt-32 border-t border-stone-200 pt-16 text-center">
+                <p className="text-xs uppercase tracking-[0.4em] text-stone-400 mb-8">End of the first scroll</p>
+                <div className="flex justify-center gap-8">
+                    <div className="w-2 h-2 rounded-full bg-brand-secondary"></div>
+                    <div className="w-2 h-2 rounded-full bg-brand-secondary opacity-50"></div>
+                    <div className="w-2 h-2 rounded-full bg-brand-secondary opacity-20"></div>
+                </div>
+            </footer>
         </div>
     );
 };

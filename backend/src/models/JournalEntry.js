@@ -52,6 +52,22 @@ const JournalEntry = sequelize.define('JournalEntry', {
         type: DataTypes.TEXT,
         allowNull: true
     },
+    reflective_question: {
+        type: DataTypes.TEXT,
+        allowNull: true
+    },
+    image_url: {
+        type: DataTypes.TEXT,
+        allowNull: true
+    },
+    biblical_ref: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    subtitle: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
     is_free: {
         type: DataTypes.BOOLEAN,
         defaultValue: true

@@ -39,12 +39,19 @@ const JournalExperience = () => {
         switch (steps[currentStep]) {
             case 'Encounter':
                 return (
-                    <div className="animate-fade-in text-center">
-                        <h2 className="text-stone-400 text-xs uppercase tracking-[0.3em] mb-4">Day {entry.day_number}: The Encounter</h2>
-                        <div className="text-2xl md:text-3xl font-serif italic text-brand-primary leading-relaxed mb-8">
+                    <div className="animate-fade-in text-center flex flex-col items-center">
+                        <div className="w-full max-w-sm aspect-[4/5] overflow-hidden luxury-card mb-12 shadow-2xl skew-y-1 hover:skew-y-0 transition-transform duration-700">
+                            <img src={entry.image_url} alt={entry.title} className="w-full h-full object-cover" />
+                        </div>
+                        <h2 className="text-brand-secondary text-[10px] font-bold uppercase tracking-[0.4em] mb-4">Day {entry.day_number}: The Encounter</h2>
+                        <div className="text-3xl md:text-4xl font-serif italic text-brand-primary leading-tight mb-8 tracking-tight max-w-xl">
                             "{entry.encounter_text}"
                         </div>
-                        <div className="h-1 w-20 bg-brand-secondary mx-auto mt-8"></div>
+                        <div className="flex items-center gap-3">
+                            <div className="h-px w-8 bg-brand-secondary opacity-30"></div>
+                            <span className="text-stone-400 text-[10px] uppercase tracking-widest font-medium italic">{entry.biblical_ref}</span>
+                            <div className="h-px w-8 bg-brand-secondary opacity-30"></div>
+                        </div>
                     </div>
                 );
             case 'Strengths':
@@ -103,18 +110,26 @@ const JournalExperience = () => {
                 return (
                     <div className="animate-fade-in">
                         <h2 className="text-stone-400 text-xs uppercase tracking-[0.3em] mb-8 text-center">Phase Six: Heart Posture</h2>
+
+                        <div className="bg-brand-soft p-10 rounded-2xl mb-10 border border-brand-secondary/10">
+                            <h4 className="text-brand-secondary text-[10px] font-bold uppercase tracking-[0.2em] mb-4">Meditative Prompt</h4>
+                            <p className="text-xl font-serif text-brand-primary italic leading-relaxed">
+                                {entry.reflective_question || "What truth are you anchoring yourself in today?"}
+                            </p>
+                        </div>
+
                         <textarea
-                            className="w-full h-48 p-6 bg-stone-50 border border-stone-200 rounded-xl outline-none focus:border-brand-secondary transition-colors font-sans"
-                            placeholder="What truth are you anchoring yourself in today?"
+                            className="w-full h-48 p-8 bg-white border border-stone-200 rounded-2xl outline-none focus:border-brand-secondary transition-all font-sans shadow-inner text-lg"
+                            placeholder="Write your heart's response..."
                             value={reflection}
                             onChange={(e) => setReflection(e.target.value)}
                         />
                         <button
                             onClick={handleSaveReflection}
                             disabled={isSaving || !reflection}
-                            className="mt-6 w-full btn-primary flex items-center justify-center gap-2"
+                            className="mt-8 w-full btn-primary flex items-center justify-center gap-3 py-4 text-xs font-bold tracking-[0.3em]"
                         >
-                            <Send size={18} /> {isSaving ? 'Sealing...' : 'Seal Reflection'}
+                            <Send size={18} /> {isSaving ? 'SEALING...' : 'SEAL REFLECTION'}
                         </button>
                     </div>
                 );
