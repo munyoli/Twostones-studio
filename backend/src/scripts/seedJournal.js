@@ -164,7 +164,45 @@ async function seedJournals() {
 
         console.log('Seeding 30 Days of Detailed Journal Entries with Modern Mirror...');
 
+        const customImages = {
+            1: "https://qsljrajbpktbfkrfzlxf.supabase.co/storage/v1/object/public/manukato/journal/day1_eve.png",
+            2: "https://qsljrajbpktbfkrfzlxf.supabase.co/storage/v1/object/public/manukato/journal/day2_sarah.png",
+            3: "https://qsljrajbpktbfkrfzlxf.supabase.co/storage/v1/object/public/manukato/journal/day3_hagar.png",
+            4: "https://qsljrajbpktbfkrfzlxf.supabase.co/storage/v1/object/public/manukato/journal/day4_lots_wife.png",
+            5: "https://qsljrajbpktbfkrfzlxf.supabase.co/storage/v1/object/public/manukato/journal/day5_rebekah.png",
+            6: "https://qsljrajbpktbfkrfzlxf.supabase.co/storage/v1/object/public/manukato/journal/day6_leah.png",
+            7: "https://qsljrajbpktbfkrfzlxf.supabase.co/storage/v1/object/public/manukato/journal/day7_rachel.png",
+            8: "https://qsljrajbpktbfkrfzlxf.supabase.co/storage/v1/object/public/manukato/journal/day8_jochebed.png",
+            9: "https://qsljrajbpktbfkrfzlxf.supabase.co/storage/v1/object/public/manukato/journal/day9_rahab.png",
+            10: "https://qsljrajbpktbfkrfzlxf.supabase.co/storage/v1/object/public/manukato/journal/day10_deborah.png",
+            11: "https://qsljrajbpktbfkrfzlxf.supabase.co/storage/v1/object/public/manukato/journal/day11_jael.png",
+            12: "https://qsljrajbpktbfkrfzlxf.supabase.co/storage/v1/object/public/manukato/journal/day12_delilah.png",
+            13: "https://qsljrajbpktbfkrfzlxf.supabase.co/storage/v1/object/public/manukato/journal/day13_ruth.png",
+            14: "https://qsljrajbpktbfkrfzlxf.supabase.co/storage/v1/object/public/manukato/journal/day14_naomi.png",
+            15: "https://qsljrajbpktbfkrfzlxf.supabase.co/storage/v1/object/public/manukato/journal/day15_hannah.png",
+            16: "https://qsljrajbpktbfkrfzlxf.supabase.co/storage/v1/object/public/manukato/journal/day16_abigail.png",
+            17: "https://qsljrajbpktbfkrfzlxf.supabase.co/storage/v1/object/public/manukato/journal/day17_jezebel.png",
+            18: "https://qsljrajbpktbfkrfzlxf.supabase.co/storage/v1/object/public/manukato/journal/day18_athaliah.png"
+        };
+
         for (const data of journalData) {
+
+            // Use custom image if available, otherwise fallback to Unsplash placeholders
+            const imageFallback = `https://images.unsplash.com/photo-${[
+                '1531384441138-2736e62e0919',
+                '1589134140411-bd7c9c3a28fc',
+                '1492633423570-761f143c62cf',
+                '1605333396515-30ad543b573e',
+                '1496220141821-61539bbac635',
+                '1501644891228-250c4cefa717',
+                '1515886657613-9af3515eaaf6',
+                '1529139513092-e845d3599b0c',
+                '1485231183942-834f37435f30',
+                '1541014175782-9626b47c043e',
+                '1516766151441-fe3913fdded5',
+                '1607513527334-789f30e06708'
+            ][data.day % 12]}?q=80&w=1080&auto=format&fit=crop`;
+
             const entryData = {
                 day_number: data.day,
                 title: data.name,
@@ -179,21 +217,7 @@ async function seedJournals() {
                 modern_contrast: data.mirror, // This is the Mirror content
                 redemption_text: `The legacy of ${data.name} is a testament to God's redeeming Grace choosing the unlikely to accomplish the eternal.`,
                 is_free: true,
-                // Using high-quality Unsplash Black Female Fashion Model placeholders
-                image_url: `https://images.unsplash.com/photo-${[
-                    '1531384441138-2736e62e0919',
-                    '1589134140411-bd7c9c3a28fc',
-                    '1492633423570-761f143c62cf',
-                    '1605333396515-30ad543b573e',
-                    '1496220141821-61539bbac635',
-                    '1501644891228-250c4cefa717',
-                    '1515886657613-9af3515eaaf6',
-                    '1529139513092-e845d3599b0c',
-                    '1485231183942-834f37435f30',
-                    '1541014175782-9626b47c043e',
-                    '1516766151441-fe3913fdded5',
-                    '1607513527334-789f30e06708'
-                ][data.day % 12]}?q=80&w=1080&auto=format&fit=crop`
+                image_url: customImages[data.day] || imageFallback
             };
 
             const [entry, created] = await JournalEntry.upsert(entryData, {
