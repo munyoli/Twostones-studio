@@ -225,6 +225,7 @@ async function seedJournals() {
             26: "https://qsljrajbpktbfkrfzlxf.supabase.co/storage/v1/object/public/manukato/journal/day26_mary_magdalene.png",
             27: "https://qsljrajbpktbfkrfzlxf.supabase.co/storage/v1/object/public/manukato/journal/day27_dorcas.png",
             28: "https://qsljrajbpktbfkrfzlxf.supabase.co/storage/v1/object/public/manukato/journal/day28_lydia.png",
+            29: "https://qsljrajbpktbfkrfzlxf.supabase.co/storage/v1/object/public/manukato/journal/day29_priscilla.png",
             30: "https://qsljrajbpktbfkrfzlxf.supabase.co/storage/v1/object/public/manukato/journal/day30_sapphira.png"
         };
 
