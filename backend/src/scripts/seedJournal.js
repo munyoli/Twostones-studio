@@ -1,3 +1,5 @@
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '../../.env') });
 const { JournalEntry } = require('../models');
 const { testConnection } = require('../utils/db');
 
@@ -212,7 +214,18 @@ async function seedJournals() {
             15: "https://qsljrajbpktbfkrfzlxf.supabase.co/storage/v1/object/public/manukato/journal/day15_hannah.png",
             16: "https://qsljrajbpktbfkrfzlxf.supabase.co/storage/v1/object/public/manukato/journal/day16_abigail.png",
             17: "https://qsljrajbpktbfkrfzlxf.supabase.co/storage/v1/object/public/manukato/journal/day17_jezebel.png",
-            18: "https://qsljrajbpktbfkrfzlxf.supabase.co/storage/v1/object/public/manukato/journal/day18_athaliah.png"
+            18: "https://qsljrajbpktbfkrfzlxf.supabase.co/storage/v1/object/public/manukato/journal/day18_athaliah.png",
+            19: "https://qsljrajbpktbfkrfzlxf.supabase.co/storage/v1/object/public/manukato/journal/day19_esther.png",
+            20: "https://qsljrajbpktbfkrfzlxf.supabase.co/storage/v1/object/public/manukato/journal/day20_mary.png",
+            21: "https://qsljrajbpktbfkrfzlxf.supabase.co/storage/v1/object/public/manukato/journal/day21_elizabeth.png",
+            22: "https://qsljrajbpktbfkrfzlxf.supabase.co/storage/v1/object/public/manukato/journal/day22_anna.png",
+            23: "https://qsljrajbpktbfkrfzlxf.supabase.co/storage/v1/object/public/manukato/journal/day23_samaritan_woman.png",
+            24: "https://qsljrajbpktbfkrfzlxf.supabase.co/storage/v1/object/public/manukato/journal/day24_martha.png",
+            25: "https://qsljrajbpktbfkrfzlxf.supabase.co/storage/v1/object/public/manukato/journal/day25_mary_of_bethany.png",
+            26: "https://qsljrajbpktbfkrfzlxf.supabase.co/storage/v1/object/public/manukato/journal/day26_mary_magdalene.png",
+            27: "https://qsljrajbpktbfkrfzlxf.supabase.co/storage/v1/object/public/manukato/journal/day27_dorcas.png",
+            28: "https://qsljrajbpktbfkrfzlxf.supabase.co/storage/v1/object/public/manukato/journal/day28_lydia.png",
+            30: "https://qsljrajbpktbfkrfzlxf.supabase.co/storage/v1/object/public/manukato/journal/day30_sapphira.png"
         };
 
         for (const data of journalData) {
