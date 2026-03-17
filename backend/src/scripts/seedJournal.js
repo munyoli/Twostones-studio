@@ -5,10 +5,19 @@ const { testConnection } = require('../utils/db');
 
 const journalData = [
     {
-        day: 1, name: "Eve", ref: "Gen 2-4", s: "Created as a powerful help (*ezer*).", w: "Susceptible to deception.", l: "God's commands are restrictive.", t: "God provides exactly what we need when we need it.", q: "What area of my life feels out of alignment because I am trying to sit in the \"driver's seat\"?",
-        mirror: "Eve’s desire for the 'more' that God had withheld is mirrored in our own striving for control and the underlying fear that His provision is not enough.",
-        encounter: "We meet the first woman, not just as a figure of the fall, but as the first to carry the image of God into a world of choice.",
-        redemption: "The first promised sprout of hope (Gen 3:15)—that despite her fall, her seed would eventually crush the head of the serpent."
+        day: 1, 
+        name: "Eve", 
+        title: "Eve — The Architecture of Freedom",
+        subtitle: "Day 1: Eve — The Architecture of Freedom",
+        ref: "Genesis 2:18–25; 3:1–21", 
+        s: "The Ezer Kenegdo—a Rescuing Strength.", 
+        w: "The Comparison Trap, The Performance Mask, Body Shame, Hyper-Independence.", 
+        l: "God is \"holding out\" on me; I am not enough.", 
+        t: "My worth is tied to my being, not my doing.", 
+        q: "Identity Restoration Prompts:\n1. The \"Un-Self-Conscious\" Hour: If you could spend one day entirely free from your \"inner critic\"—not thinking about your appearance, your reputation, or your past mistakes—what would you have the energy to do or create?\n2. Identifying the Garment: What is your go-to \"fig leaf\"? When you feel \"not enough,\" do you cover yourself with perfectionism, busyness, or by becoming invisible?\n3. The Scarcity Check: Where are you currently focusing on the \"one tree\" God has said \"no\" to, while ignoring the \"99 trees\" of His goodness in your life?\n4. Redefining Ezer: How does it change your confidence to know that God’s word for you is \"Rescuing Strength\" rather than \"Disposable Assistant\"?",
+        mirror: "II. The Distortion: The Birth of Insecurity\nThe Fall was an identity theft. The Serpent’s question—\"Did God really say?\"—shifted Eve's focus from the 99% Yes (abundance) to the 1% No (scarcity). The moment she believed God was \"holding out\" on her, her freedom vanished, replaced by the relatable insecurities we carry today:\n\nThe Comparison Trap: Eve had no one to compare herself to, yet the Serpent convinced her she was \"less than\" God. Today, we mirror this by measuring our \"Double Image\" against others, turning potential allies into competitors.\n\nThe Performance Mask: When the transparency of the Garden was lost, \"doing\" replaced \"being.\" We see this in the chronic need to be the perfect professional, mother, or friend—sewing together \"fig leaves\" of achievements to hide the fear that we aren't enough.\n\nBody Shame: The first result of the Fall was the urge to \"cover up.\" What was once a vessel of life became a source of self-consciousness. Body insecurity is the physical manifestation of the spiritual desire to hide from a gaze we no longer trust.\n\nHyper-Independence: The Ezer was designed for partnership, but in \"survival mode,\" that strength curdles into a \"me against the world\" mentality. We stop trusting others with our weaknesses because we no longer feel \"covered.\"",
+        encounter: "I. The Blueprint: Freedom from Self-Consciousness\nBefore the Fall, Eve lived in a state of un-self-consciousness. Because she was the first and only woman, she lacked the \"internal mirror\" that modern women carry. She had no social ladder to climb, no beauty standard to meet, and no history of failure to overcome. She was the Ezer Kenegdo—a Rescuing Strength—whose identity was defined by God’s gaze alone.\n\nThe Original Freedom: To be \"naked and unashamed\" (Lo Yitboshashu) meant total transparency. There was no need for a \"poker face,\" no fear of being \"too much,\" and no pressure to perform. Her worth was tied to her being, not her doing.",
+        redemption: "III. The Restoration: The First Act of Fashion\nGod’s response to our insecurity is not a lecture, but a covering. He rejected the fragile, itchy fig leaves that Eve used to hide her shame and performed the first act of sacrifice to clothe her in durable tunics of skin.\n\nThe Sacrifice: Redemption required a life. God's \"first act of fashion\" proved that He is the only one with the right to clothe and define us.\n\nThe Name: Despite the crisis, God affirmed her purpose by naming her Eve (Life-Giver).\n\nThe Promise: Genesis 3:15 declares that the \"bruised heel\" of our daily struggle—the insecurities, the trauma, the shame—is not the end. The victory belongs to the Seed of the Woman, who crushes the head of the lie forever."
     },
     {
         day: 2, name: "Sarah", ref: "Gen 12-21", s: "Faith to move to a strange land.", w: "Impatience leading to \"helping\" God.", l: "God has forgotten His promise.", t: "God is the Promise Maker; His timing is perfect.", q: "What am I holding on to (bitterness or fear) that needs to be surrendered to God’s timing?",
@@ -249,8 +258,8 @@ async function seedJournals() {
 
             const entryData = {
                 day_number: data.day,
-                title: data.name,
-                subtitle: `Day ${data.day}: The Story of ${data.name}`,
+                title: data.title || data.name,
+                subtitle: data.subtitle || `Day ${data.day}: The Story of ${data.name}`,
                 biblical_ref: data.ref,
                 encounter_text: data.encounter,
                 strengths: data.s,
