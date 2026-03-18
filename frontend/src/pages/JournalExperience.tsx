@@ -146,7 +146,7 @@ const JournalExperience = () => {
                         <div className="bg-brand-soft p-8 md:p-12 rounded-3xl mb-10 border border-brand-secondary/20 text-left shadow-sm">
                             <h4 className="text-brand-secondary text-[10px] font-bold uppercase tracking-[0.3em] mb-10 text-center flex items-center justify-center gap-4">
                                 <div className="h-px w-8 bg-brand-secondary/30"></div>
-                                Meditative Prompts
+                                Journal Prompts
                                 <div className="h-px w-8 bg-brand-secondary/30"></div>
                             </h4>
                             <div className="font-serif text-brand-primary leading-relaxed">
