@@ -44,8 +44,10 @@ const JournalExperience = () => {
                             <img src={entry.image_url} alt={entry.title} className="w-full h-full object-cover" />
                         </div>
                         <h2 className="text-brand-secondary text-[10px] font-bold uppercase tracking-[0.4em] mb-4">Day {entry.day_number}: The Encounter</h2>
-                        <div className="text-3xl md:text-4xl font-serif italic text-brand-primary leading-tight mb-8 tracking-tight max-w-xl">
-                            "{entry.encounter_text}"
+                        <div className="text-lg md:text-xl font-serif text-brand-primary leading-relaxed mb-8 text-left max-w-2xl px-6 space-y-6">
+                            {entry.encounter_text?.split('\n').map((paragraph: string, i: number) => (
+                                paragraph.trim() ? <p key={i}>{paragraph}</p> : null
+                            ))}
                         </div>
                         <div className="flex items-center gap-3">
                             <div className="h-px w-8 bg-brand-secondary opacity-30"></div>
@@ -69,11 +71,13 @@ const JournalExperience = () => {
                 );
             case 'Mirror':
                 return (
-                    <div className="animate-fade-in text-center max-w-2xl mx-auto">
+                    <div className="animate-fade-in text-center max-w-2xl mx-auto px-6">
                         <h2 className="text-stone-400 text-xs uppercase tracking-[0.3em] mb-8">The Modern Mirror</h2>
-                        <p className="text-xl text-brand-primary leading-loose font-serif italic">
-                            "{entry.modern_contrast}"
-                        </p>
+                        <div className="text-lg md:text-xl text-brand-primary leading-relaxed font-serif text-left space-y-6 bg-white/50 p-8 rounded-2xl border border-stone-100">
+                            {entry.modern_contrast?.split('\n').map((paragraph: string, i: number) => (
+                                paragraph.trim() ? <p key={i}>{paragraph}</p> : null
+                            ))}
+                        </div>
                     </div>
                 );
             case 'LieTruth':
@@ -97,29 +101,60 @@ const JournalExperience = () => {
                 );
             case 'Redemption':
                 return (
-                    <div className="animate-fade-in">
+                    <div className="animate-fade-in max-w-2xl mx-auto px-6">
                         <h2 className="text-stone-400 text-xs uppercase tracking-[0.3em] mb-8 text-center">Phase Five: Redemption</h2>
-                        <div className="bg-brand-primary p-12 text-center rounded-2xl shadow-xl">
-                            <p className="text-white text-xl font-medium italic">
-                                {entry.redemption_text}
-                            </p>
+                        <div className="bg-brand-primary p-8 md:p-12 text-left rounded-2xl shadow-xl">
+                            <div className="text-white/90 text-lg md:text-xl font-serif leading-relaxed space-y-6">
+                                {entry.redemption_text?.split('\n').map((paragraph: string, i: number) => (
+                                    paragraph.trim() ? <p key={i}>{paragraph}</p> : null
+                                ))}
+                            </div>
                         </div>
                     </div>
                 );
             case 'Reflection':
                 return (
-                    <div className="animate-fade-in">
+                    <div className="animate-fade-in max-w-3xl mx-auto px-4">
                         <h2 className="text-stone-400 text-xs uppercase tracking-[0.3em] mb-8 text-center">Phase Six: Heart Posture</h2>
 
-                        <div className="bg-brand-soft p-10 rounded-2xl mb-10 border border-brand-secondary/10">
-                            <h4 className="text-brand-secondary text-[10px] font-bold uppercase tracking-[0.2em] mb-4">Meditative Prompt</h4>
-                            <p className="text-xl font-serif text-brand-primary italic leading-relaxed">
-                                {entry.reflective_question || "What truth are you anchoring yourself in today?"}
-                            </p>
+                        <div className="bg-brand-soft p-8 md:p-12 rounded-3xl mb-10 border border-brand-secondary/20 text-left shadow-sm">
+                            <h4 className="text-brand-secondary text-[10px] font-bold uppercase tracking-[0.3em] mb-10 text-center flex items-center justify-center gap-4">
+                                <div className="h-px w-8 bg-brand-secondary/30"></div>
+                                Meditative Prompts
+                                <div className="h-px w-8 bg-brand-secondary/30"></div>
+                            </h4>
+                            <div className="font-serif text-brand-primary leading-relaxed">
+                                {entry.reflective_question ? 
+                                    entry.reflective_question.split('\n').map((line: string, i: number) => {
+                                        if (!line.trim()) return null;
+                                        if (/^\d+\./.test(line.trim())) {
+                                            const parts = line.split(':');
+                                            const numAndTitle = parts[0];
+                                            const rest = parts.slice(1).join(':') || parts[0]; // Fallback if no colon
+                                            
+                                            // Render numbered list items with deep luxury styling
+                                            return (
+                                                <div key={i} className="mb-10 pl-6 border-l-2 border-brand-secondary/40 relative group">
+                                                    <div className="absolute -left-[5px] top-2 w-2 h-2 rounded-full bg-brand-bg border border-brand-secondary transition-all group-hover:bg-brand-secondary"></div>
+                                                    <span className="font-sans font-bold text-brand-secondary block mb-3 text-xs md:text-sm tracking-[0.2em] uppercase">
+                                                        {numAndTitle.trim()}
+                                                    </span>
+                                                    <p className="text-xl md:text-2xl text-brand-primary/90 italic">
+                                                        {rest.trim() !== numAndTitle.trim() ? rest.trim() : ''}
+                                                    </p>
+                                                </div>
+                                            );
+                                        }
+                                        return <p key={i} className="mb-8 font-serif text-2xl text-center text-brand-primary">{line}</p>;
+                                    })
+                                : (
+                                    <p className="text-2xl italic text-center">What truth are you anchoring yourself in today?</p>
+                                )}
+                            </div>
                         </div>
 
                         <textarea
-                            className="w-full h-48 p-8 bg-white border border-stone-200 rounded-2xl outline-none focus:border-brand-secondary transition-all font-sans shadow-inner text-lg"
+                            className="w-full h-56 p-8 bg-white/50 border border-stone-200 rounded-3xl outline-none focus:border-brand-secondary focus:bg-white transition-all font-sans shadow-inner text-lg leading-relaxed placeholder:text-stone-300 placeholder:italic mb-8"
                             placeholder="Write your heart's response..."
                             value={reflection}
                             onChange={(e) => setReflection(e.target.value)}
@@ -127,9 +162,9 @@ const JournalExperience = () => {
                         <button
                             onClick={handleSaveReflection}
                             disabled={isSaving || !reflection}
-                            className="mt-8 w-full btn-primary flex items-center justify-center gap-3 py-4 text-xs font-bold tracking-[0.3em]"
+                            className="w-full btn-primary flex items-center justify-center gap-3 py-5 text-[10px] font-bold tracking-[0.4em] rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all"
                         >
-                            <Send size={18} /> {isSaving ? 'SEALING...' : 'SEAL REFLECTION'}
+                            <Send size={16} /> {isSaving ? 'SEALING...' : 'SEAL REFLECTION'}
                         </button>
                     </div>
                 );
