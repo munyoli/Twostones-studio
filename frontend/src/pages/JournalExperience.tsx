@@ -6,6 +6,38 @@ import { ChevronRight, ChevronLeft, Send, Sparkles } from 'lucide-react';
 
 const steps = ['Encounter', 'Strengths', 'Mirror', 'LieTruth', 'Redemption', 'Reflection', 'Translation'];
 
+const renderFormattedText = (text: string | undefined) => {
+    if (!text) return null;
+    
+    return text.split('\n').map((paragraph, i) => {
+        const trimmed = paragraph.trim();
+        if (!trimmed) return <div key={i} className="h-4"></div>; // spacing for empty lines
+
+        // 1. Check for main section headers (e.g. "The Distortion: The Birth of Insecurity")
+        // Usually short, no periods at the end, contains a colon.
+        if (trimmed.length < 80 && !trimmed.endsWith('.') && trimmed.includes(':')) {
+           return <h3 key={i} className="text-xl md:text-2xl font-bold font-serif text-brand-secondary mt-8 mb-4 border-b border-stone-200/50 pb-2">{trimmed}</h3>;
+        }
+
+        // 2. Check for subtopic sentences like "The Comparison Trap: Eve had no one..."
+        const colonIndex = trimmed.indexOf(':');
+        // If colon is found early in the sentence (e.g. within first 35 chars)
+        if (colonIndex > 0 && colonIndex < 40 && trimmed[colonIndex + 1] === ' ') {
+            const lead = trimmed.substring(0, colonIndex);
+            const rest = trimmed.substring(colonIndex + 1);
+            return (
+                <p key={i} className="mb-6 leading-relaxed">
+                    <strong className="font-sans uppercase tracking-[0.1em] text-xs font-bold text-brand-secondary block mb-2">{lead}</strong>
+                    {rest.trim()}
+                </p>
+            );
+        }
+
+        // 3. Default paragraph
+        return <p key={i} className="mb-6 leading-relaxed">{trimmed}</p>;
+    });
+};
+
 const JournalExperience = () => {
     const { id } = useParams();
     const navigate = useNavigate();
@@ -44,10 +76,8 @@ const JournalExperience = () => {
                             <img src={entry.image_url} alt={entry.title} className="w-full h-full object-cover" />
                         </div>
                         <h2 className="text-brand-secondary text-[10px] font-bold uppercase tracking-[0.4em] mb-4">Day {entry.day_number}: The Encounter</h2>
-                        <div className="text-lg md:text-xl font-serif text-brand-primary leading-relaxed mb-8 text-left max-w-2xl px-6 space-y-6">
-                            {entry.encounter_text?.split('\n').map((paragraph: string, i: number) => (
-                                paragraph.trim() ? <p key={i}>{paragraph}</p> : null
-                            ))}
+                        <div className="text-lg md:text-xl font-serif text-brand-primary leading-relaxed mb-8 text-left max-w-2xl px-6">
+                            {renderFormattedText(entry.encounter_text)}
                         </div>
                         <div className="flex items-center gap-3">
                             <div className="h-px w-8 bg-brand-secondary opacity-30"></div>
@@ -73,10 +103,8 @@ const JournalExperience = () => {
                 return (
                     <div className="animate-fade-in text-center max-w-2xl mx-auto px-6">
                         <h2 className="text-stone-400 text-xs uppercase tracking-[0.3em] mb-8">The Modern Mirror</h2>
-                        <div className="text-lg md:text-xl text-brand-primary leading-relaxed font-serif text-left space-y-6 bg-white/50 p-8 rounded-2xl border border-stone-100">
-                            {entry.modern_contrast?.split('\n').map((paragraph: string, i: number) => (
-                                paragraph.trim() ? <p key={i}>{paragraph}</p> : null
-                            ))}
+                        <div className="text-lg md:text-xl text-brand-primary leading-relaxed font-serif text-left bg-white/50 p-8 rounded-2xl border border-stone-100">
+                            {renderFormattedText(entry.modern_contrast)}
                         </div>
                     </div>
                 );
@@ -104,10 +132,8 @@ const JournalExperience = () => {
                     <div className="animate-fade-in max-w-2xl mx-auto px-6">
                         <h2 className="text-stone-400 text-xs uppercase tracking-[0.3em] mb-8 text-center">Phase Five: Redemption</h2>
                         <div className="bg-brand-primary p-8 md:p-12 text-left rounded-2xl shadow-xl">
-                            <div className="text-white/90 text-lg md:text-xl font-serif leading-relaxed space-y-6">
-                                {entry.redemption_text?.split('\n').map((paragraph: string, i: number) => (
-                                    paragraph.trim() ? <p key={i}>{paragraph}</p> : null
-                                ))}
+                            <div className="text-white/90 text-lg md:text-xl font-serif leading-relaxed">
+                                {renderFormattedText(entry.redemption_text)}
                             </div>
                         </div>
                     </div>
