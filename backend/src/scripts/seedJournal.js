@@ -7,8 +7,6 @@ const journalData = [
     {
         day: 1,
         name: "Eve",
-        title: "Eve — The Architecture of Freedom",
-        subtitle: "Day 1: Eve — The Architecture of Freedom",
         ref: "Genesis 2:18–25; 3:1–21",
         s: "The Ezer Kenegdo—a Rescuing Strength.",
         w: "The Comparison Trap, The Performance Mask, Body Shame, Hyper-Independence.",
