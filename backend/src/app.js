@@ -40,24 +40,6 @@ const frontendBuildPath = path.join(__dirname, '../../frontend/dist');
 if (fs.existsSync(frontendBuildPath)) {
     // Serve static files from the build folder
     app.use(express.static(frontendBuildPath));
-
-    // For any request that doesn't match an API route, serve index.html
-    app.get('/', (req, res) => {
-        res.sendFile(path.join(frontendBuildPath, 'index.html'));
-    });
-} else {
-    // 2. Default root route if no build is found
-    app.get('/', (req, res) => {
-        res.status(200).send(`
-            <div style="font-family: serif; text-align: center; margin-top: 50px; color: #1a1a1a;">
-                <h1 style="color: #c5a059;">Twostones API</h1>
-                <p>The backend server for Twostones African Luxury is running.</p>
-                <p style="color: #666; font-size: 0.8em;">The API is live and accessible.</p>
-                <hr style="width: 50px; border-color: #c5a059;">
-                <p style="font-size: 0.7em; text-transform: uppercase; letter-spacing: 2px;">Sanctified. Sophisticated. Secure.</p>
-            </div>
-        `);
-    });
 }
 
 // Routes
@@ -70,6 +52,25 @@ app.use('/api/stylist', stylistRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/collection/manukato', manukatoRoutes);
 app.use('/api/user', measurementRoutes);
+
+// Catch-all route to serve the React app for any unhandled non-API paths
+if (fs.existsSync(frontendBuildPath)) {
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(frontendBuildPath, 'index.html'));
+    });
+} else {
+    app.get('*', (req, res) => {
+        res.status(200).send(`
+            <div style="font-family: serif; text-align: center; margin-top: 50px; color: #1a1a1a;">
+                <h1 style="color: #c5a059;">Twostones API</h1>
+                <p>The backend server for Twostones African Luxury is running.</p>
+                <p style="color: #666; font-size: 0.8em;">The API is live and accessible.</p>
+                <hr style="width: 50px; border-color: #c5a059;">
+                <p style="font-size: 0.7em; text-transform: uppercase; letter-spacing: 2px;">Sanctified. Sophisticated. Secure.</p>
+            </div>
+        `);
+    });
+}
 
 // Error handling middleware
 app.use((err, req, res, next) => {
