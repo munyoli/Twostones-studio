@@ -57,11 +57,11 @@ app.use('/api/analytics', analyticsRoutes);
 
 // Catch-all route to serve the React app for any unhandled non-API paths
 if (fs.existsSync(frontendBuildPath)) {
-    app.get('*', (req, res) => {
+    app.get(/(.*)/, (req, res) => {
         res.sendFile(path.join(frontendBuildPath, 'index.html'));
     });
 } else {
-    app.get('*', (req, res) => {
+    app.get(/(.*)/, (req, res) => {
         res.status(200).send(`
             <div style="font-family: serif; text-align: center; margin-top: 50px; color: #1a1a1a;">
                 <h1 style="color: #c5a059;">Twostones API</h1>
