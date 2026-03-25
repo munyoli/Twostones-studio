@@ -161,3 +161,12 @@ CREATE TABLE IF NOT EXISTS "ManukatoItems" (
     "createdAt"     TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     "updatedAt"     TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
+
+-- 13. PageVisits
+CREATE TABLE IF NOT EXISTS "page_visits" (
+    id           UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    path         TEXT NOT NULL,
+    referrer     TEXT,
+    "userAgent"  TEXT,
+    timestamp    TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);

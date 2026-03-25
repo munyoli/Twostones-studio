@@ -3,6 +3,12 @@ import { Routes, Route } from 'react-router-dom';
 import { AppProviders } from './AppProviders';
 import MainLayout from './layouts/MainLayout';
 import LoadingSpinner from './components/LoadingSpinner';
+import { usePageTracking } from './hooks/usePageTracking';
+
+const AnalyticsTracker = () => {
+  usePageTracking();
+  return null;
+};
 
 // Lazy load pages for performance
 const Home = React.lazy(() => import('./pages/Home'));
@@ -19,6 +25,7 @@ const AdminLayout = React.lazy(() => import('./components/AdminLayout'));
 const AdminClients = React.lazy(() => import('./pages/AdminClients'));
 const AdminOrders = React.lazy(() => import('./pages/AdminOrders'));
 const AdminJournals = React.lazy(() => import('./pages/AdminJournals'));
+const AdminAnalytics = React.lazy(() => import('./pages/AdminAnalytics'));
 const Profile = React.lazy(() => import('./pages/Profile'));
 const ManukatoCollection = React.lazy(() => import('./pages/ManukatoCollection'));
 const ManukatoProduct = React.lazy(() => import('./pages/ManukatoProduct'));
@@ -33,6 +40,7 @@ const RunwayPage = React.lazy(() => import('./pages/RunwayPage'));
 function App() {
   return (
     <AppProviders>
+      <AnalyticsTracker />
       <Suspense fallback={<LoadingSpinner />}>
         <Routes>
           <Route element={<MainLayout />}>
@@ -64,6 +72,7 @@ function App() {
             <Route path="clients" element={<AdminClients />} />
             <Route path="orders" element={<AdminOrders />} />
             <Route path="journals" element={<AdminJournals />} />
+            <Route path="analytics" element={<AdminAnalytics />} />
           </Route>
         </Routes>
       </Suspense>

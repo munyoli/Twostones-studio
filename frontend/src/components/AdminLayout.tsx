@@ -1,5 +1,5 @@
 import { useNavigate, Link, Outlet } from 'react-router-dom';
-import { Users, ShoppingCart, Book, LogOut, LayoutDashboard } from 'lucide-react';
+import { Users, ShoppingCart, Book, LogOut, LayoutDashboard, BarChart } from 'lucide-react';
 import { useAuth } from '../features/auth/context/AuthContext';
 import { useEffect } from 'react';
 
@@ -42,6 +42,9 @@ const AdminLayout = () => {
                 <nav className="flex-grow p-6 space-y-2">
                     <Link to="/admin" className="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 transition-colors uppercase tracking-widest text-xs font-medium">
                         <LayoutDashboard size={18} /> Dashboard
+                    </Link>
+                    <Link to="/admin/analytics" className="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 transition-colors uppercase tracking-widest text-xs font-medium">
+                        <BarChart size={18} /> Analytics
                     </Link>
                     <Link to="/admin/clients" className="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 transition-colors uppercase tracking-widest text-xs font-medium">
                         <Users size={18} /> Clients

@@ -11,6 +11,7 @@ const stylistRoutes = require('./routes/stylistRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const manukatoRoutes = require('./routes/manukatoRoutes');
 const measurementRoutes = require('./routes/measurementRoutes');
+const analyticsRoutes = require('./routes/analyticsRoutes');
 
 const app = express();
 
@@ -52,6 +53,7 @@ app.use('/api/stylist', stylistRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/collection/manukato', manukatoRoutes);
 app.use('/api/user', measurementRoutes);
+app.use('/api/analytics', analyticsRoutes);
 
 // Catch-all route to serve the React app for any unhandled non-API paths
 if (fs.existsSync(frontendBuildPath)) {

@@ -9,6 +9,7 @@ const OrderItem = require('./OrderItem');
 const JournalEntry = require('./JournalEntry');
 const JournalResponse = require('./JournalResponse');
 const ManukatoItem = require('./ManukatoItem');
+const PageVisit = require('./PageVisit');
 const { sequelize } = require('../utils/db');
 
 // Category - Product
@@ -66,5 +67,6 @@ module.exports = {
     JournalEntry,
     JournalResponse,
     ManukatoItem,
+    PageVisit,
     sequelize
 };
