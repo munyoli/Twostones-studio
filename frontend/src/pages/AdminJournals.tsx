@@ -10,9 +10,10 @@ const AdminJournals = () => {
         queryFn: () => journalApi.getAllReflections().then(res => res.data),
     });
 
+    const searchLower = searchTerm.toLowerCase();
     const filteredReflections = reflections?.filter((r: any) =>
-        r.User?.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        r.entry?.title.toLowerCase().includes(searchTerm.toLowerCase())
+        (r.User?.name || '').toLowerCase().includes(searchLower) ||
+        (r.entry?.title || '').toLowerCase().includes(searchLower)
     );
 
     const handleExport = (id: string, userName: string) => {

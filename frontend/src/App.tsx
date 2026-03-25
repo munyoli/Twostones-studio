@@ -35,7 +35,6 @@ const FAQ = React.lazy(() => import('./pages/FAQ'));
 const ShippingReturns = React.lazy(() => import('./pages/ShippingReturns'));
 const SizeGuide = React.lazy(() => import('./pages/SizeGuide'));
 const Portfolio = React.lazy(() => import('./pages/Portfolio'));
-const RunwayPage = React.lazy(() => import('./pages/RunwayPage'));
 
 function App() {
   return (
@@ -63,7 +62,6 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/runway" element={<RunwayPage />} />
           </Route>
 
           {/* Admin Routes */}

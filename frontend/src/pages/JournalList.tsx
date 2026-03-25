@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { journalApi } from '../services/api';
 import { Link } from 'react-router-dom';
-import { BookOpen, Sparkles, Play } from 'lucide-react';
+import { BookOpen, Sparkles } from 'lucide-react';
 
 const JournalList = () => {
     const { data: entries, isLoading } = useQuery({
@@ -26,14 +26,6 @@ const JournalList = () => {
                     "Strength and honor are her clothing; she shall rejoice in time to come."<br />
                     A journey through identity, grace, and the timeless style of the women who shaped history.
                 </p>
-                <div className="mt-12 flex justify-center">
-                    <Link
-                        to="/runway"
-                        className="luxury-button bg-brand-primary text-white px-10 py-4 text-xs font-bold uppercase tracking-[0.4em] flex items-center gap-3 hover:bg-brand-secondary transition-all transform hover:-translate-y-1 shadow-xl"
-                    >
-                        <Play size={14} fill="white" /> Launch Runway Show
-                    </Link>
-                </div>
             </header>
 
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
